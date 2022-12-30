@@ -4,10 +4,81 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.css">
     <script src="../src/index.js" defer></script>
     <title>Todo List</title>
 </head>
 <body>
-    
+    <div id="content">
+        <aside>
+            <div class="sidebar-container">
+                <div class="sidebar">
+                    <p>Categories</p>
+                    <p class="dropdown-arrow">&#x25BC;</p>
+                </div>
+                <div class="expanded-sidebar hidden">
+                    <div id="default">Unsorted</div>
+                    <div id="new-project">
+                        <form id="projects-form">
+                            <input type="text">
+                            <button type="button" id="add-new-category">+</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main>
+            <div class="display-container">
+                <!-- Add dom elements to this div -->
+                <h2 id="project-name">Unsorted</h2>
+                <div class="example-task">
+                    <div class="task-overview">
+                        <div class="priority-indicator"></div>
+                        <div class="checkbox"></div>
+                        <p class="title">Hangout with Bob</p>
+                        <p class="description">Meet at town plaza at 3pm</p>
+                    </div>
+                    <p class="task-date">12/29/22</p>
+                </div>
+            </div>
+            
+            <div class="new-task-container">
+                <div id="add-new-task">+ ADD NEW TASK</div>
+                
+                <div class="task-form-container hidden">
+                    <form id="task-form">
+                        <div class="form-field" id="title">
+                            <label for="task-title">Task Name</label>
+                            <input type="text" id="task-title" name="taskTitle">
+                        </div>
+                        <div class="form-field" id="description">
+                            <label for="task-description">Description</label>
+                            <input type="text" id="task-description" name="taskDescription">
+                        </div>
+                        <div class="form-field" id="notes">
+                            <label for="task-notes">Notes</label>
+                            <textarea id="task-notes" name="taskNotes"></textarea>
+                        </div>
+                        <div class="form-field" id="task-due">
+                            <label for="task-due-date">Due Date</label>
+                            <input type="date" id="task-due-date" name="taskDueDate">
+                        </div>
+                        <div class="form-field" id="priority">
+                            <label for="priority-level">Priority</label>
+                            <select id="priority-level" name="taskPriority">
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+                        <div class="form-field" id="task-btn">
+                            <button type="button" id="add-task-btn">Add</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
 </body>
 </html>
