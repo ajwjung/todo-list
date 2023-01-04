@@ -2,10 +2,18 @@
 const DataArr = (() => {
     let allCategories = ["default"];
 	let allTasks = [];
+    let categoryAdded = false;
     
     const checkNewCategoryAdded = (categoryName) => {
         const name = categoryName.toLowerCase();
-        return (name && !(allCategories.includes(name)));
+        if (name && !(allCategories.includes(name))) {
+            categoryAdded = true;
+        }
+        return categoryAdded;
+    }
+
+    const resetCategoryAdded = () => {
+        categoryAdded = false;
     }
 
 	const pushNewCategory = (category) => {
@@ -16,8 +24,8 @@ const DataArr = (() => {
         allTasks.push(task);
     };
 
-    return { pushNewCategory, pushNewTask, checkNewCategoryAdded,
-        allCategories, allTasks };
+    return { pushNewCategory, pushNewTask, checkNewCategoryAdded, resetCategoryAdded,
+        allCategories, allTasks, categoryAdded };
 })();
 
 // Module to get form fields
@@ -30,6 +38,7 @@ const FormFields = (() => {
             e.preventDefault();
 			if (DataArr.checkNewCategoryAdded(categoryName.value)) {
 				DataArr.pushNewCategory(categoryName.value);
+                DataArr.resetCategoryAdded();
 			}
         })
     }
@@ -56,4 +65,4 @@ const DomElements = (() => {
     
 })();
 
-export { FormFields };
+export { DataArr, FormFields, DomElements };
