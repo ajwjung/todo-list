@@ -33,11 +33,11 @@
                     <form id="task-form">
                         <div class="form-field" id="title">
                             <label for="task-title">Task Name</label>
-                            <input type="text" id="task-title" name="taskTitle" placeholder="Pay bills">
+                            <input type="text" id="task-title" name="taskTitle" placeholder="Pay bills" required>
                         </div>
                         <div class="form-field" id="description">
                             <label for="task-description">Description</label>
-                            <input type="text" id="task-description" name="taskDescription" placeholder="Water and utility">
+                            <input type="text" id="task-description" name="taskDescription" placeholder="Water and utility" required>
                         </div>
                         <div class="form-field" id="notes">
                             <label for="task-notes">Notes</label>
@@ -45,11 +45,11 @@
                         </div>
                         <div class="form-field" id="task-due">
                             <label for="task-due-date">Due Date</label>
-                            <input type="date" id="task-due-date" name="taskDueDate">
+                            <input type="date" id="task-due-date" name="taskDueDate" required>
                         </div>
                         <div class="form-field" id="priority">
                             <label for="priority-level">Priority</label>
-                            <select id="priority-level" name="taskPriority">
+                            <select id="priority-level" name="taskPriority" required>
                                 <option value="low">Low</option>
                                 <option value="medium">Medium</option>
                                 <option value="high">High</option>
