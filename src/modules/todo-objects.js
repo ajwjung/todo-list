@@ -30,39 +30,51 @@ const DataArr = (() => {
 
 // Module to get form fields
 const FormFields = (() => {
-    const categoryName = document.querySelector("input[name='categoryName']");
-    const submitCategory = document.querySelector("#add-new-category");
-    
-    const addNewCategory = () => {
-        submitCategory.addEventListener("click", function (e) {
-            e.preventDefault();
-			if (DataArr.checkNewCategoryAdded(categoryName.value)) {
-				DataArr.pushNewCategory(categoryName.value);
-                DataArr.resetCategoryAdded();
-			}
-        })
-    }
+    const newCategoryHandler = () => {
+        const categoryName = document.querySelector("input[name='categoryName']");
 
-	const handleSubmit = (e) => {
+        if (DataArr.checkNewCategoryAdded(categoryName.value)) {
+            DataArr.pushNewCategory(categoryName.value);
+            DataArr.resetCategoryAdded();
+        }
+    };
+
+	const createTaskObject = (e) => {
         e.preventDefault();
 		// Create new object from form fields
         const formData = new FormData(e.target);
         const formProps = Object.fromEntries(formData);
 
         DataArr.pushNewTask(formProps);
-    }
+    };
 
-    const addNewTask = () => {        
-        const taskForm = document.querySelector("#task-form");
-        taskForm.addEventListener("submit", handleSubmit);
-    }
-
-    return { addNewCategory, addNewTask };
+    return { newCategoryHandler, createTaskObject };
 })();
 
 // Module to create dom elements
 const DomElements = (() => {
-    
+    const getNewCategory = () => {
+        return DataArr.allCategories[DataArr.allCategories.length - 1];
+    };
+
+    const createCategoryDiv = (category) => {
+        const newCategoryDiv = document.createElement("div");
+        newCategoryDiv.classList.add(category);
+        newCategoryDiv.textContent = category;
+
+        return newCategoryDiv;
+    };
+
+    // Create new div and append to sidebar
+    const appendCategoryDiv = () => {
+        const sidebarDropdown = document.querySelector(".expanded-sidebar");
+        const newDiv = createCategoryDiv(getNewCategory());
+        console.log("This is working");
+        sidebarDropdown.appendChild(newDiv);
+    };
+
+    return { appendCategoryDiv }
+
 })();
 
 export { DataArr, FormFields, DomElements };
