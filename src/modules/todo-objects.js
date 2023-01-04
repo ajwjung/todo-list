@@ -1,19 +1,20 @@
-// Factory to create objects
-const TodoTask = (title, description, notes, dueDate, priority) => {
-	
-    return { title, description, notes, dueDate, priority };
-};
-
+// Handling storage arrays
 const DataArr = (() => {
     let allCategories = ["default"];
+	let allTasks = [];
 
 	const pushNewCategory = (category) => {
 		allCategories.push(category);
-	}
+	};
 
-	return { pushNewCategory };
+    const pushNewTask = (task) => {
+        allTasks.push(task);
+    };
+
+    return { pushNewCategory, pushNewTask, allCategories, allTasks };
 })();
 
+// Module to get form fields
 const FormFields = (() => {
 
     const addNewCategory = () => {
@@ -24,12 +25,26 @@ const FormFields = (() => {
             e.preventDefault();
 			const newCategory = categoryName.value;
 			if (!(newCategory in DataArr.allCategories)) {
-				DataArr.addNewCategory(newCategory);
+				DataArr.pushNewCategory(newCategory);
 			}
         })
     }
 
-    return { addNewCategory };
+	const handleSubmit = (e) => {
+        e.preventDefault();
+		// Create new object from form fields
+        const formData = new FormData(e.target);
+        const formProps = Object.fromEntries(formData);
+
+        DataArr.pushNewTask(formProps);
+    }
+
+    const addNewTask = () => {        
+        const taskForm = document.querySelector("#task-form");
+        taskForm.addEventListener("submit", handleSubmit);
+    }
+
+    return { addNewCategory, addNewTask };
 })();
 
 export { FormFields };
