@@ -4,7 +4,8 @@ const DataArr = (() => {
 	let allTasks = [];
     
     const checkNewCategoryAdded = (categoryName) => {
-        return (categoryName && !(allCategories.includes(categoryName)));
+        const name = categoryName.toLowerCase();
+        return (name && !(allCategories.includes(name)));
     }
 
 	const pushNewCategory = (category) => {
@@ -48,6 +49,11 @@ const FormFields = (() => {
     }
 
     return { addNewCategory, addNewTask };
+})();
+
+// Module to create dom elements
+const DomElements = (() => {
+    
 })();
 
 export { FormFields };
