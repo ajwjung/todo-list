@@ -11,7 +11,7 @@ const DataArr = (() => {
         allTasks.push(task);
     };
 
-    return { pushNewCategory, pushNewTask };
+    return { pushNewCategory, pushNewTask, allCategories };
 })();
 
 // Module to get form fields
