@@ -2,6 +2,10 @@
 const DataArr = (() => {
     let allCategories = ["default"];
 	let allTasks = [];
+    
+    const checkNewCategoryAdded = (categoryName) => {
+        return (categoryName && !(allCategories.includes(categoryName)));
+    }
 
 	const pushNewCategory = (category) => {
 		allCategories.push(category);
@@ -11,20 +15,20 @@ const DataArr = (() => {
         allTasks.push(task);
     };
 
-    return { pushNewCategory, pushNewTask, allCategories };
+    return { pushNewCategory, pushNewTask, checkNewCategoryAdded,
+        allCategories, allTasks };
 })();
 
 // Module to get form fields
 const FormFields = (() => {
+    const categoryName = document.querySelector("input[name='categoryName']");
+    const submitCategory = document.querySelector("#add-new-category");
+    
     const addNewCategory = () => {
-		const categoryName = document.querySelector("input[name='categoryName']");
-		const submitCategory = document.querySelector("#add-new-category");
-
         submitCategory.addEventListener("click", function (e) {
             e.preventDefault();
-			const newCategory = categoryName.value;
-			if (!(newCategory in DataArr.allCategories)) {
-				DataArr.pushNewCategory(newCategory);
+			if (DataArr.checkNewCategoryAdded(categoryName.value)) {
+				DataArr.pushNewCategory(categoryName.value);
 			}
         })
     }
