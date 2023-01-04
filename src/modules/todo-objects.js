@@ -30,25 +30,24 @@ const DataArr = (() => {
 
 // Module to get form fields
 const FormFields = (() => {
-    const newCategoryHandler = () => {
-        const categoryName = document.querySelector("input[name='categoryName']");
+    const getCategoryName = () => {
+        return document.querySelector("input[name='categoryName']").value;
+    }
 
-        if (DataArr.checkNewCategoryAdded(categoryName.value)) {
-            DataArr.pushNewCategory(categoryName.value);
-            DataArr.resetCategoryAdded();
-        }
+    const newCategoryHandler = () => {
+        DataArr.pushNewCategory(getCategoryName());
     };
 
 	const createTaskObject = (e) => {
         e.preventDefault();
-		// Create new object from form fields
+		// New object from form fields
         const formData = new FormData(e.target);
         const formProps = Object.fromEntries(formData);
 
         DataArr.pushNewTask(formProps);
     };
 
-    return { newCategoryHandler, createTaskObject };
+    return { getCategoryName, newCategoryHandler, createTaskObject };
 })();
 
 // Module to create dom elements
@@ -65,11 +64,9 @@ const DomElements = (() => {
         return newCategoryDiv;
     };
 
-    // Create new div and append to sidebar
     const appendCategoryDiv = () => {
         const sidebarDropdown = document.querySelector(".expanded-sidebar");
         const newDiv = createCategoryDiv(getNewCategory());
-        console.log("This is working");
         sidebarDropdown.appendChild(newDiv);
     };
 

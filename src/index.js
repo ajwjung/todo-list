@@ -1,18 +1,15 @@
 import { DataArr, FormFields, DomElements } from "./modules/todo-objects.js";
 
 const PageElements = (() => {
-    const addCategoryToSidebar = () => {
-        if (DataArr.categoryAdded) {
-            DomElements.appendCategoryDiv();
-        }
-    };
-
     const addNewCategory = () => {
         const submitCategory = document.querySelector("#add-new-category");
         submitCategory.addEventListener("click", function(e) {
             e.preventDefault();
-            FormFields.newCategoryHandler(); // append to array
-            DomElements.appendCategoryDiv();
+            if (DataArr.checkNewCategoryAdded(FormFields.getCategoryName())) {
+                FormFields.newCategoryHandler(); // append to array
+                DomElements.appendCategoryDiv(); // add dom element
+                DataArr.resetCategoryAdded();
+            }
         });
     };
     
