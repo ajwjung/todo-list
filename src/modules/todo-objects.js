@@ -11,12 +11,11 @@ const DataArr = (() => {
         allTasks.push(task);
     };
 
-    return { pushNewCategory, pushNewTask, allCategories, allTasks };
+    return { pushNewCategory, pushNewTask };
 })();
 
 // Module to get form fields
 const FormFields = (() => {
-
     const addNewCategory = () => {
 		const categoryName = document.querySelector("input[name='categoryName']");
 		const submitCategory = document.querySelector("#add-new-category");
