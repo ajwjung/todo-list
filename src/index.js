@@ -25,6 +25,9 @@ const PageElements = (() => {
 })();
 
 const RenderPage = (() => {
+    const datePicker = document.querySelector("#task-due-date");
+    datePicker.min = new Date().toISOString().split("T")[0];
+    
     PageElements.addNewCategory();
     PageElements.addNewTask();
 })();
