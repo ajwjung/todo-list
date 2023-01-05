@@ -126,7 +126,7 @@ const DomElements = (() => {
     }
 
     const createTaskDiv = (taskObj) => {
-        const taskContainer = createDiv("example-task");
+        const taskContainer = createDiv("task-container");
         const taskOverview = createOverviewDiv(taskObj);
         const taskDate = createPara("task-date", taskObj.taskDueDate);
         taskContainer.appendChild(taskOverview);

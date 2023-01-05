@@ -165,7 +165,7 @@ h1 {
 }
 
 main,
-.example-task,
+.task-container,
 .task-overview {
     display: flex;
     align-items: center;
@@ -212,7 +212,7 @@ main {
     border: 2px solid var(--purple2);
 }
 
-.example-task {
+.task-container {
     background: var(--pink2);
     margin: 0.5rem 0;
     padding: var(--lr-padding);
