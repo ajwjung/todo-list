@@ -89,7 +89,7 @@ const DomElements = (() => {
     const appendCategoryDiv = () => {
         const sidebarDropdown = document.querySelector(".expanded-sidebar");
         const newDiv = createCategoryDiv(getNewCategory());
-        sidebarDropdown.appendChild(newDiv);
+        sidebarDropdown.insertBefore(newDiv, sidebarDropdown.lastElementChild);
     };
 
     return { appendCategoryDiv }
