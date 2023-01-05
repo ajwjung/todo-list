@@ -18,6 +18,7 @@ const PageElements = (() => {
         taskForm.addEventListener("submit", function(e) {
             e.preventDefault();
             FormFields.newTaskHandler(e);
+            DomElements.appendTaskDiv();
         });
     };
 

@@ -35,7 +35,6 @@ const DataArr = (() => {
 
 	const pushNewCategory = (category) => {
 		allCategories.push(category.toLowerCase());
-        console.log(allCategories);
 	};
 
     const pushNewTask = (task) => {
@@ -92,7 +91,58 @@ const DomElements = (() => {
         sidebarDropdown.insertBefore(newDiv, sidebarDropdown.lastElementChild);
     };
 
-    return { appendCategoryDiv }
+    const getNewTask = () => {
+        return DataArr.allTasks[DataArr.allTasks.length - 1];
+    };
+
+    const createDiv = (className) => {
+        const newDiv = document.createElement("div");
+        newDiv.classList.add(className);
+
+        return newDiv;
+    };
+
+    const createPara = (className, objValue) => {
+        const newPara = document.createElement("p");
+        newPara.classList.add(className);
+        newPara.textContent = objValue;
+
+        return newPara;
+    }
+
+    const createOverviewDiv = (taskObj) => {
+        const newTaskDiv = createDiv("task-overview");
+        const priorityindicator = createDiv("priority-indicator");
+        const checkbox = createDiv("checkbox");
+        const titlePara = createPara("title", taskObj.taskTitle);
+        const descriptionPara = createPara("description", taskObj.taskDescription);
+
+        newTaskDiv.appendChild(priorityindicator);
+        newTaskDiv.appendChild(checkbox);
+        newTaskDiv.appendChild(titlePara);
+        newTaskDiv.appendChild(descriptionPara);
+
+        return newTaskDiv;
+    }
+
+    const createTaskDiv = (taskObj) => {
+        const taskContainer = createDiv("example-task");
+        const taskOverview = createOverviewDiv(taskObj);
+        const taskDate = createPara("task-date", taskObj.taskDueDate);
+        taskContainer.appendChild(taskOverview);
+        taskContainer.appendChild(taskDate);
+
+        return taskContainer;
+    }
+
+    const appendTaskDiv = () => {
+        const containerHeader = document.querySelector("#project-name");
+        const newTaskDiv = createTaskDiv(getNewTask());
+        containerHeader.parentNode.insertBefore(newTaskDiv, containerHeader.nextElementSibling);
+
+    }
+
+    return { appendCategoryDiv, appendTaskDiv }
 
 })();
 
