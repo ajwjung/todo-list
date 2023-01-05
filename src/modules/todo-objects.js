@@ -39,15 +39,18 @@ const FormFields = (() => {
     };
 
 	const createTaskObject = (e) => {
-        e.preventDefault();
 		// New object from form fields
         const formData = new FormData(e.target);
         const formProps = Object.fromEntries(formData);
 
-        DataArr.pushNewTask(formProps);
+        return formProps;
     };
 
-    return { getCategoryName, newCategoryHandler, createTaskObject };
+    const newTaskHandler = (e) => {
+        DataArr.pushNewTask(createTaskObject(e));
+    }
+
+    return { getCategoryName, newCategoryHandler, newTaskHandler };
 })();
 
 // Module to create dom elements

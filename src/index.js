@@ -15,7 +15,10 @@ const PageElements = (() => {
     
     const addNewTask = () => {        
         const taskForm = document.querySelector("#task-form");
-        taskForm.addEventListener("submit", FormFields.createTaskObject);
+        taskForm.addEventListener("submit", function(e) {
+            e.preventDefault();
+            FormFields.newTaskHandler(e);
+        });
     };
 
     return { addNewCategory, addNewTask };
