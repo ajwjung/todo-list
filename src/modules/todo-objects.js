@@ -95,9 +95,12 @@ const DomElements = (() => {
         return DataArr.allTasks[DataArr.allTasks.length - 1];
     };
 
-    const createDiv = (className) => {
+    const createDiv = (className, anotherClassName) => {
         const newDiv = document.createElement("div");
         newDiv.classList.add(className);
+        if (anotherClassName) {
+            newDiv.classList.add(anotherClassName);
+        }
 
         return newDiv;
     };
@@ -112,12 +115,12 @@ const DomElements = (() => {
 
     const createOverviewDiv = (taskObj) => {
         const newTaskDiv = createDiv("task-overview");
-        const priorityindicator = createDiv("priority-indicator");
+        const priorityIndicator = createDiv("priority-indicator", taskObj.taskPriority);
         const checkbox = createDiv("checkbox");
         const titlePara = createPara("title", taskObj.taskTitle);
         const descriptionPara = createPara("description", taskObj.taskDescription);
 
-        newTaskDiv.appendChild(priorityindicator);
+        newTaskDiv.appendChild(priorityIndicator);
         newTaskDiv.appendChild(checkbox);
         newTaskDiv.appendChild(titlePara);
         newTaskDiv.appendChild(descriptionPara);
