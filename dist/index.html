@@ -20,8 +20,8 @@
                     <div class="category" id="default">Unsorted</div>
                     <div id="new-project">
                         <form id="projects-form">
-                            <input type="text" id="category-name" name="categoryName" placeholder="New category">
-                            <button type="button" id="add-new-category">+</button>
+                            <input type="text" id="category-name" name="categoryName" pattern="[A-Za-z\w]+" title="Only Alphabets and whitespaces are accepted." placeholder="New category" required>
+                            <button type="submit" id="add-new-category">+</button>
                         </form>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                     <form id="task-form">
                         <div class="form-field" id="title">
                             <label for="task-title">Task Name</label>
-                            <input type="text" id="task-title" name="taskTitle" placeholder="Pay bills" required>
+                            <input type="text" id="task-title" name="taskTitle" pattern="[A-Za-z\w]+" title="Only Alphabets and whitespaces are accepted." placeholder="Pay bills" required>
                         </div>
                         <div class="form-field" id="description">
                             <label for="task-description">Description</label>
