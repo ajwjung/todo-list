@@ -1,3 +1,20 @@
+// Module to handle category names
+const NameHandler = (() => {
+    const checkWhiteSpaceInName = (name) => {
+        return /\s/g.test(name);
+    };
+
+    const getNameWithoutWhiteSpaces = (name) => {
+        if (checkWhiteSpaceInName(name)) {
+            return name.replace(/\s+/g, "");
+        } else {
+            return name;
+        }
+    };
+
+    return { getNameWithoutWhiteSpaces }
+})();
+
 // Handling storage arrays
 const DataArr = (() => {
     let allCategories = ["default"];
@@ -6,7 +23,7 @@ const DataArr = (() => {
     
     const checkNewCategoryAdded = (categoryName) => {
         const name = categoryName.toLowerCase();
-        if (name && !(allCategories.includes(name))) {
+        if (!(allCategories.includes(name))) {
             categoryAdded = true;
         }
         return categoryAdded;
@@ -17,7 +34,8 @@ const DataArr = (() => {
     }
 
 	const pushNewCategory = (category) => {
-		allCategories.push(category);
+		allCategories.push(category.toLowerCase());
+        console.log(allCategories);
 	};
 
     const pushNewTask = (task) => {
@@ -28,7 +46,7 @@ const DataArr = (() => {
         allCategories, allTasks, categoryAdded };
 })();
 
-// Module to get form fields
+// Module to handle form fields
 const FormFields = (() => {
     const getCategoryName = () => {
         return document.querySelector("input[name='categoryName']").value;
@@ -61,7 +79,8 @@ const DomElements = (() => {
 
     const createCategoryDiv = (category) => {
         const newCategoryDiv = document.createElement("div");
-        newCategoryDiv.classList.add(category);
+        const nameWithoutWhiteSpace = NameHandler.getNameWithoutWhiteSpaces(category);
+        newCategoryDiv.classList.add(nameWithoutWhiteSpace);
         newCategoryDiv.textContent = category;
 
         return newCategoryDiv;
