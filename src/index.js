@@ -2,8 +2,8 @@ import { DataArr, FormFields, DomElements } from "./modules/todo-objects.js";
 
 const PageElements = (() => {
     const addNewCategory = () => {
-        const submitCategory = document.querySelector("#add-new-category");
-        submitCategory.addEventListener("click", function(e) {
+        const projectForm = document.querySelector("#projects-form");
+        projectForm.addEventListener("submit", function(e) {
             e.preventDefault();
             if (DataArr.checkNewCategoryAdded(FormFields.getCategoryName())) {
                 FormFields.newCategoryHandler(); // append to array
