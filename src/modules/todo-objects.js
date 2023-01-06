@@ -84,9 +84,9 @@ const DomElements = (() => {
     const createCategoryDiv = (category) => {
         const newCategoryDiv = document.createElement("div");
         const nameWithoutWhiteSpace = NameHandler.getNameWithoutWhiteSpaces(category);
-        newCategoryDiv.classList.add(nameWithoutWhiteSpace);
+        newCategoryDiv.setAttribute("id", nameWithoutWhiteSpace);
+        newCategoryDiv.classList.add("category");
         newCategoryDiv.textContent = NameHandler.capitalizeFirstLetters(category);
-
         return newCategoryDiv;
     };
 
