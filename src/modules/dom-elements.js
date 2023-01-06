@@ -1,5 +1,5 @@
 import { NameHandler } from "./name-handler.js";
-import { DataArr } from "./form-handler.js";
+import { DataArr, FormFields } from "./form-handler.js";
 
 // Module to create dom elements
 const DomElements = (() => {
@@ -26,10 +26,6 @@ const DomElements = (() => {
         const categorySelect = document.getElementById("task-category");
         const category = getNewCategory();
         categorySelect.add(new Option(NameHandler.capitalizeFirstLetters(category), category))
-    };
-
-    const getNewTask = () => {
-        return DataArr.allTasks[DataArr.allTasks.length - 1];
     };
 
     const createDiv = (className, anotherClassName) => {
@@ -77,7 +73,7 @@ const DomElements = (() => {
 
     const appendTaskDiv = () => {
         const containerHeader = document.querySelector("#project-name");
-        const newTaskDiv = createTaskDiv(getNewTask());
+        const newTaskDiv = createTaskDiv(FormFields.getTaskObject());
         containerHeader.parentNode.insertBefore(newTaskDiv, containerHeader.nextElementSibling);
 
     };
