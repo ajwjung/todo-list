@@ -1,4 +1,5 @@
-import { DataArr, FormFields, DomElements } from "./modules/todo-objects.js";
+import { DataArr, FormFields } from "./modules/form-handler.js";
+import { DomElements } from "./modules/dom-elements.js";
 
 const PageElements = (() => {
     const addNewCategory = () => {
