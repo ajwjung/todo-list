@@ -122,7 +122,7 @@ const DomElements = (() => {
         newPara.textContent = objValue;
 
         return newPara;
-    }
+    };
 
     const createOverviewDiv = (taskObj) => {
         const newTaskDiv = createDiv("task-overview");
@@ -137,7 +137,7 @@ const DomElements = (() => {
         newTaskDiv.appendChild(descriptionPara);
 
         return newTaskDiv;
-    }
+    };
 
     const createTaskDiv = (taskObj) => {
         const taskContainer = createDiv("task-container");
@@ -147,16 +147,24 @@ const DomElements = (() => {
         taskContainer.appendChild(taskDate);
 
         return taskContainer;
-    }
+    };
 
     const appendTaskDiv = () => {
         const containerHeader = document.querySelector("#project-name");
         const newTaskDiv = createTaskDiv(getNewTask());
         containerHeader.parentNode.insertBefore(newTaskDiv, containerHeader.nextElementSibling);
 
+    };
+
+    const expandCollapseTabs = (boxName, hiddenBoxName) => {
+        const visibleBox = document.querySelector(boxName);
+        const hiddenBox = document.querySelector(hiddenBoxName);
+        visibleBox.addEventListener("click", function(e) {
+            hiddenBox.classList.toggle("hidden");
+        });
     }
 
-    return { appendCategoryDiv, appendTaskDiv, addOptionsToSelect }
+    return { appendCategoryDiv, appendTaskDiv, addOptionsToSelect, expandCollapseTabs }
 
 })();
 

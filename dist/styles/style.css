@@ -128,7 +128,6 @@ aside,
 .new-task-container {
     height: min-content;
     width: var(--smaller-width);
-    background: var(--pink1);
 }
 
 #add-new-task,
@@ -148,6 +147,7 @@ aside,
 .task-form-container {
     height: var(--full-size);
     padding: 1rem;
+    background: var(--pink1);
 }
 
 #task-form {
@@ -232,6 +232,6 @@ main {
     font-style: italic;
 }
 
-/* .hidden {
+.hidden {
     visibility: hidden;
-} */
+}
