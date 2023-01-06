@@ -8,6 +8,7 @@ const PageElements = (() => {
             if (DataArr.checkNewCategoryAdded(FormFields.getCategoryName())) {
                 FormFields.newCategoryHandler(); // append to array
                 DomElements.appendCategoryDiv(); // add dom element
+                DomElements.addOptionsToSelect(); // add new option to select
                 DataArr.resetCategoryAdded();
             }
         });

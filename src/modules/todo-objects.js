@@ -12,7 +12,12 @@ const NameHandler = (() => {
         }
     };
 
-    return { getNameWithoutWhiteSpaces }
+    const capitalizeFirstLetters = (name) => {
+        let modifiedName = name.toLowerCase().split(" ").map(word => word.charAt(0).toUpperCase() + word.substring(1)).join(" ");
+        return modifiedName;
+    }
+
+    return { getNameWithoutWhiteSpaces, capitalizeFirstLetters }
 })();
 
 // Handling storage arrays
@@ -91,6 +96,17 @@ const DomElements = (() => {
         sidebarDropdown.insertBefore(newDiv, sidebarDropdown.lastElementChild);
     };
 
+    const addOptionsToSelect = () => {
+        const categorySelect = document.getElementById("task-category");
+        const selectOptions = categorySelect.options;
+        const categoryArr = DataArr.allCategories;
+        selectOptions.length = 0; // reset all options
+
+        for (const option in categoryArr) {
+            selectOptions[selectOptions.length] = new Option(NameHandler.capitalizeFirstLetters(categoryArr[option]), option);
+        }
+    };
+
     const getNewTask = () => {
         return DataArr.allTasks[DataArr.allTasks.length - 1];
     };
@@ -145,7 +161,7 @@ const DomElements = (() => {
 
     }
 
-    return { appendCategoryDiv, appendTaskDiv }
+    return { appendCategoryDiv, appendTaskDiv, addOptionsToSelect }
 
 })();
 
