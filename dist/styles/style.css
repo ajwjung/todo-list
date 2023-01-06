@@ -154,7 +154,6 @@ aside,
 }
 
 .task-form-container {
-    height: var(--full-size);
     padding: 1rem;
     background: var(--pink1);
 }
