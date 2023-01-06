@@ -98,13 +98,8 @@ const DomElements = (() => {
 
     const addOptionsToSelect = () => {
         const categorySelect = document.getElementById("task-category");
-        const selectOptions = categorySelect.options;
-        const categoryArr = DataArr.allCategories;
-        selectOptions.length = 0; // reset all options
-
-        for (const option in categoryArr) {
-            selectOptions[selectOptions.length] = new Option(NameHandler.capitalizeFirstLetters(categoryArr[option]), option);
-        }
+        const category = getNewCategory();
+        categorySelect.add(new Option(NameHandler.capitalizeFirstLetters(category), category))
     };
 
     const getNewTask = () => {
