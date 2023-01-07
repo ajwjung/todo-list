@@ -20,11 +20,13 @@ const DataArr = (() => {
 		allCategories.push(category.toLowerCase());
 	};
 
+    const checkTaskHasCategory = (category) => {
+        return (allTasks.hasOwnProperty(category));
+    };
+
     const addCategoryToObject = (category) => {
         // Creates new key in allTasks object
-        if (!(allTasks.hasOwnProperty(category))) {
-            allTasks[category] = [];
-        }
+        allTasks[category] = [];
     };
 
     const pushNewTask = () => {
@@ -32,8 +34,8 @@ const DataArr = (() => {
         allTasks[newTask.category].push(newTask);
     };
 
-    return { checkNewCategoryAdded, resetCategoryAdded, pushNewCategory, 
-        addCategoryToObject, pushNewTask, allCategories };
+    return { checkNewCategoryAdded, resetCategoryAdded, pushNewCategory,
+        checkTaskHasCategory, addCategoryToObject, pushNewTask, allCategories };
 })();
 
 // Module to handle form fields
@@ -44,7 +46,9 @@ const FormFields = (() => {
 
     const newCategoryHandler = () => {
         const newCategoryName = getCategoryName();
-        DataArr.addCategoryToObject(newCategoryName);
+        if (!(DataArr.checkTaskHasCategory(newCategoryName))) {
+            DataArr.addCategoryToObject(newCategoryName);
+        };
         DataArr.pushNewCategory(newCategoryName);
     };
 
