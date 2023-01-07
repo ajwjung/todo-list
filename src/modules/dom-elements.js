@@ -9,10 +9,9 @@ const CategoryDom = (() => {
 
     const createCategoryDiv = (category) => {
         const newCategoryDiv = document.createElement("div");
-        const nameWithoutWhiteSpace = NameHandler.getNameWithoutWhiteSpaces(category);
-        newCategoryDiv.setAttribute("id", nameWithoutWhiteSpace);
+        newCategoryDiv.setAttribute("id", category);
         newCategoryDiv.classList.add("category");
-        newCategoryDiv.textContent = NameHandler.capitalizeFirstLetters(category);
+        newCategoryDiv.textContent = NameHandler.makeNamePresentable(category);
         return newCategoryDiv;
     };
 
@@ -30,7 +29,7 @@ const DomElements = (() => {
     const addOptionsToSelect = () => {
         const categorySelect = document.getElementById("task-category");
         const category = CategoryDom.getNewCategory();
-        categorySelect.add(new Option(NameHandler.capitalizeFirstLetters(category), category))
+        categorySelect.add(new Option(NameHandler.makeNamePresentable(category), category))
     };
 
     const createDiv = (className, anotherClassName) => {

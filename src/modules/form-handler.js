@@ -1,3 +1,5 @@
+import { NameHandler } from "./name-handler.js";
+
 // Handling storage arrays
 const DataArr = (() => {
     let allCategories = ["default"];
@@ -17,7 +19,8 @@ const DataArr = (() => {
     }
 
 	const pushNewCategory = (category) => {
-		allCategories.push(category.toLowerCase());
+		allCategories.push(NameHandler.getHyphenatedName(category));
+        console.log(allCategories);
 	};
 
     const checkTaskHasCategory = (category) => {
@@ -26,12 +29,14 @@ const DataArr = (() => {
 
     const addCategoryToObject = (category) => {
         // Creates new key in allTasks object
-        allTasks[category] = [];
+        allTasks[NameHandler.getHyphenatedName(category)] = [];
     };
 
     const pushNewTask = () => {
         const newTask = FormFields.TodoTask();
+        console.log(allTasks[newTask.category])
         allTasks[newTask.category].push(newTask);
+        console.log(allTasks);
     };
 
     return { checkNewCategoryAdded, resetCategoryAdded, pushNewCategory,
