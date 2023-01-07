@@ -50,8 +50,8 @@ const DomElements = (() => {
         const newTaskDiv = createDiv("task-overview");
         const priorityIndicator = createDiv("priority-indicator", taskObj.taskPriority);
         const checkbox = createDiv("checkbox");
-        const titlePara = createPara("title", taskObj.taskTitle);
-        const descriptionPara = createPara("description", taskObj.taskDescription);
+        const titlePara = createPara("title", taskObj.title);
+        const descriptionPara = createPara("description", taskObj.description);
 
         newTaskDiv.appendChild(priorityIndicator);
         newTaskDiv.appendChild(checkbox);
@@ -64,7 +64,7 @@ const DomElements = (() => {
     const createTaskDiv = (taskObj) => {
         const taskContainer = createDiv("task-container");
         const taskOverview = createOverviewDiv(taskObj);
-        const taskDate = createPara("task-date", taskObj.taskDueDate);
+        const taskDate = createPara("task-date", taskObj.dueDate);
         taskContainer.appendChild(taskOverview);
         taskContainer.appendChild(taskDate);
 
