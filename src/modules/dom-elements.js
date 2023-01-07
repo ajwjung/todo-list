@@ -1,8 +1,7 @@
 import { NameHandler } from "./name-handler.js";
 import { DataArr, FormFields } from "./form-handler.js";
 
-// Module to create dom elements
-const DomElements = (() => {
+const CategoryDom = (() => {
     const getNewCategory = () => {
         return DataArr.allCategories[DataArr.allCategories.length - 1];
     };
@@ -22,9 +21,13 @@ const DomElements = (() => {
         sidebarDropdown.insertBefore(newDiv, sidebarDropdown.lastElementChild);
     };
 
+    return { getNewCategory, appendCategoryDiv };
+})();
+
+const DomElements = (() => {
     const addOptionsToSelect = () => {
         const categorySelect = document.getElementById("task-category");
-        const category = getNewCategory();
+        const category = CategoryDom.getNewCategory();
         categorySelect.add(new Option(NameHandler.capitalizeFirstLetters(category), category))
     };
 
@@ -46,12 +49,18 @@ const DomElements = (() => {
         return newPara;
     };
 
+    return { addOptionsToSelect, createDiv, createPara }
+
+})();
+
+// Module to create dom elements
+const TaskDom = (() => {
     const createOverviewDiv = (taskObj) => {
-        const newTaskDiv = createDiv("task-overview");
-        const priorityIndicator = createDiv("priority-indicator", taskObj.taskPriority);
-        const checkbox = createDiv("checkbox");
-        const titlePara = createPara("title", taskObj.title);
-        const descriptionPara = createPara("description", taskObj.description);
+        const newTaskDiv = DomElements.createDiv("task-overview");
+        const priorityIndicator = DomElements.createDiv("priority-indicator", taskObj.priority);
+        const checkbox = DomElements.createDiv("checkbox");
+        const titlePara = DomElements.createPara("title", taskObj.title);
+        const descriptionPara = DomElements.createPara("description", taskObj.description);
 
         newTaskDiv.appendChild(priorityIndicator);
         newTaskDiv.appendChild(checkbox);
@@ -62,9 +71,9 @@ const DomElements = (() => {
     };
 
     const createTaskDiv = (taskObj) => {
-        const taskContainer = createDiv("task-container");
+        const taskContainer = DomElements.createDiv("task-container");
         const taskOverview = createOverviewDiv(taskObj);
-        const taskDate = createPara("task-date", taskObj.dueDate);
+        const taskDate = DomElements.createPara("task-date", taskObj.dueDate);
         taskContainer.appendChild(taskOverview);
         taskContainer.appendChild(taskDate);
 
@@ -86,8 +95,8 @@ const DomElements = (() => {
         });
     }
 
-    return { appendCategoryDiv, appendTaskDiv, addOptionsToSelect, expandCollapseTabs }
+    return { appendTaskDiv, expandCollapseTabs }
 
 })();
 
-export { DomElements };
+export { CategoryDom, DomElements, TaskDom };

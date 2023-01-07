@@ -1,5 +1,5 @@
 import { DataArr, FormFields } from "./modules/form-handler.js";
-import { DomElements } from "./modules/dom-elements.js";
+import { CategoryDom, DomElements, TaskDom } from "./modules/dom-elements.js";
 
 const PageElements = (() => {
     const addNewCategory = () => {
@@ -8,7 +8,7 @@ const PageElements = (() => {
             e.preventDefault();
             if (DataArr.checkNewCategoryAdded(FormFields.getCategoryName())) {
                 FormFields.newCategoryHandler(); // append to array
-                DomElements.appendCategoryDiv(); // add dom element
+                CategoryDom.appendCategoryDiv(); // add dom element
                 DomElements.addOptionsToSelect(); // add new option to select
                 DataArr.resetCategoryAdded();
             }
@@ -20,7 +20,7 @@ const PageElements = (() => {
         taskForm.addEventListener("submit", function(e) {
             e.preventDefault();
             FormFields.newTaskHandler(e);
-            DomElements.appendTaskDiv();
+            TaskDom.appendTaskDiv();
         });
     };
 
@@ -31,8 +31,8 @@ const RenderPage = (() => {
     const datePicker = document.querySelector("#task-due-date");
     datePicker.min = new Date().toISOString().split("T")[0];
 
-    DomElements.expandCollapseTabs(".sidebar", ".expanded-sidebar");
-    DomElements.expandCollapseTabs("#add-new-task", ".task-form-container");
+    TaskDom.expandCollapseTabs(".sidebar", ".expanded-sidebar");
+    TaskDom.expandCollapseTabs("#add-new-task", ".task-form-container");
     PageElements.addNewCategory();
     PageElements.addNewTask();
 })();
