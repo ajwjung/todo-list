@@ -1,6 +1,7 @@
 import { NameHandler } from "./name-handler.js";
 import { DataArr, FormFields } from "./form-handler.js";
 
+// Handles dom for category only
 const CategoryDom = (() => {
     const getNewCategory = () => {
         return DataArr.allCategories[DataArr.allCategories.length - 1];
@@ -24,6 +25,7 @@ const CategoryDom = (() => {
     return { getNewCategory, appendCategoryDiv };
 })();
 
+// Handles creating dom elements
 const DomElements = (() => {
     const addOptionsToSelect = () => {
         const categorySelect = document.getElementById("task-category");
@@ -53,7 +55,7 @@ const DomElements = (() => {
 
 })();
 
-// Module to create dom elements
+// Handles dom for tasks only
 const TaskDom = (() => {
     const createOverviewDiv = (taskObj) => {
         const newTaskDiv = DomElements.createDiv("task-overview");
