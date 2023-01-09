@@ -7,7 +7,7 @@ const DataArr = (() => {
     let categoryAdded = false;
     
     const checkNewCategoryAdded = (categoryName) => {
-        const name = categoryName.toLowerCase();
+        const name = NameHandler.getHyphenatedName(categoryName).toLowerCase();
         if (!(allCategories.includes(name))) {
             categoryAdded = true;
         }
