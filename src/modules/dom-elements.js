@@ -50,7 +50,20 @@ const DomElements = (() => {
         return newPara;
     };
 
-    return { addOptionsToSelect, createDiv, createPara }
+    const createCategoryH1 = (categoryName) => {
+        const newH1 = document.createElement("h1");
+        newH1.setAttribute("id", "category-name");
+        newH1.textContent = categoryName;
+
+        return newH1;
+    };
+
+    const appendH1 = (heading) => {
+        const displayContainer = document.querySelector(".display-container");
+        displayContainer.appendChild(heading);
+    }
+
+    return { addOptionsToSelect, createDiv, createPara, createCategoryH1, appendH1 }
 
 })();
 
@@ -82,10 +95,9 @@ const TaskDom = (() => {
     };
 
     const appendTaskDiv = () => {
-        const containerHeader = document.querySelector("#project-name");
+        const displayContainer = document.querySelector(".display-container");
         const newTaskDiv = createTaskDiv(FormFields.getTaskObject());
-        containerHeader.parentNode.insertBefore(newTaskDiv, containerHeader.nextElementSibling);
-
+        displayContainer.appendChild(newTaskDiv);
     };
 
     const expandCollapseTabs = (boxName, hiddenBoxName) => {

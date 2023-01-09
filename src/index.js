@@ -24,13 +24,24 @@ const PageElements = (() => {
         });
     };
 
-    return { addNewCategory, addNewTask };
+    let currentCategory = "default";
+    // let categoryClicked = false;
+
+    // const changeCategory = (e) => {
+    //     if (categoryClicked) {
+    //         currentCategory = e.target.id;
+    //     }
+    // };
+
+    return { addNewCategory, addNewTask, currentCategory };
 })();
 
 const RenderPage = (() => {
     const datePicker = document.querySelector("#task-due-date");
     datePicker.min = new Date().toISOString().split("T")[0];
 
+    const categoryHeading = DomElements.createCategoryH1(PageElements.currentCategory);
+    DomElements.appendH1(categoryHeading);
     TaskDom.expandCollapseTabs(".sidebar", ".expanded-sidebar");
     TaskDom.expandCollapseTabs("#add-new-task", ".task-form-container");
     PageElements.addNewCategory();
