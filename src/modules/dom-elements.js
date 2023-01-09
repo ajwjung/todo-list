@@ -26,11 +26,17 @@ const CategoryDom = (() => {
 
 // Handles creating dom elements
 const DomElements = (() => {
+    const displayContainer = document.querySelector(".display-container");
+
     const addOptionsToSelect = () => {
         const categorySelect = document.getElementById("task-category");
         const category = CategoryDom.getNewCategory();
         categorySelect.add(new Option(NameHandler.makeNamePresentable(category), category))
     };
+
+    const clearContents = () => {
+        displayContainer.innerHTML = "";
+    }
 
     const createDiv = (className, anotherClassName) => {
         const newDiv = document.createElement("div");
@@ -53,17 +59,17 @@ const DomElements = (() => {
     const createCategoryH1 = (categoryName) => {
         const newH1 = document.createElement("h1");
         newH1.setAttribute("id", "category-name");
-        newH1.textContent = categoryName;
+        newH1.textContent = NameHandler.makeNamePresentable(categoryName);
 
         return newH1;
     };
 
     const appendH1 = (heading) => {
-        const displayContainer = document.querySelector(".display-container");
         displayContainer.appendChild(heading);
     }
 
-    return { addOptionsToSelect, createDiv, createPara, createCategoryH1, appendH1 }
+    return { addOptionsToSelect, clearContents, createDiv,
+        createPara, createCategoryH1, appendH1 }
 
 })();
 

@@ -1,5 +1,7 @@
 import { DataArr, FormFields } from "./modules/form-handler.js";
 import { CategoryDom, DomElements, TaskDom } from "./modules/dom-elements.js";
+import { SidebarHandler } from "./modules/sidebar-handler.js";
+import { NameHandler } from "./modules/name-handler.js";
 
 const PageElements = (() => {
     const addNewCategory = () => {
@@ -24,26 +26,21 @@ const PageElements = (() => {
         });
     };
 
-    let currentCategory = "default";
-    // let categoryClicked = false;
-
-    // const changeCategory = (e) => {
-    //     if (categoryClicked) {
-    //         currentCategory = e.target.id;
-    //     }
-    // };
-
-    return { addNewCategory, addNewTask, currentCategory };
+    return { addNewCategory, addNewTask };
 })();
 
 const RenderPage = (() => {
     const datePicker = document.querySelector("#task-due-date");
     datePicker.min = new Date().toISOString().split("T")[0];
 
-    const categoryHeading = DomElements.createCategoryH1(PageElements.currentCategory);
-    DomElements.appendH1(categoryHeading);
     TaskDom.expandCollapseTabs(".sidebar", ".expanded-sidebar");
     TaskDom.expandCollapseTabs("#add-new-task", ".task-form-container");
+
+    const defaultH1 = DomElements.createCategoryH1(SidebarHandler.getTabName());
+    DomElements.appendH1(defaultH1);
+
     PageElements.addNewCategory();
     PageElements.addNewTask();
+
+    SidebarHandler.tabHandler();
 })();
