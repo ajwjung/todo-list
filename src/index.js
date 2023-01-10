@@ -2,7 +2,7 @@ import { DataArr, FormFields } from "./modules/form-handler.js";
 import { CategoryDom, DomElements, TaskDom } from "./modules/dom-elements.js";
 import { SidebarHandler } from "./modules/sidebar-handler.js";
 
-const PageElements = (() => {
+const DefaultLoad = (() => {
     const addNewCategory = () => {
         const projectForm = document.querySelector("#projects-form");
         projectForm.addEventListener("submit", function(e) {
@@ -21,8 +21,11 @@ const PageElements = (() => {
         taskForm.addEventListener("submit", function(e) {
             e.preventDefault();
             FormFields.newTaskHandler(e);
+            const currentTab = SidebarHandler.getTabName();
             const newTask = FormFields.getTaskObject();
-            TaskDom.appendTaskDiv(newTask);
+            if (newTask.category == currentTab) {
+                TaskDom.appendTaskDiv(newTask);
+            };
         });
     };
 
@@ -39,8 +42,8 @@ const RenderPage = (() => {
     const defaultH1 = DomElements.createCategoryH1(SidebarHandler.getTabName());
     DomElements.appendH1(defaultH1);
 
-    PageElements.addNewCategory();
-    PageElements.addNewTask();
+    DefaultLoad.addNewCategory();
+    DefaultLoad.addNewTask();
 
     SidebarHandler.tabHandler();
 })();
