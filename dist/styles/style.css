@@ -178,7 +178,6 @@ h1 {
 }
 
 main,
-/* .task-container, */
 .task-overview {
     display: flex;
     align-items: center;
@@ -230,7 +229,6 @@ main {
     margin: 0.5rem 0;
     padding: var(--lr-padding);
     height: min-content;
-    /* justify-content: space-between; */
 }
 
 .task-overview {
@@ -249,6 +247,14 @@ main {
     margin-left: auto;
 }
 
+.task-notes {
+    word-wrap: break-word;
+}
+
 .hidden {
     display: none;
+}
+
+.expand-task {
+    min-height: 20vh;
 }

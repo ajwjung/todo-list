@@ -1,6 +1,7 @@
 import { NameHandler } from "./name-handler.js";
 import { DataArr } from "./form-handler.js";
 import { SidebarHandler } from "./sidebar-handler.js";
+import { TaskCards } from "./task-handler.js";
 
 // Handles dom for category only
 const CategoryDom = (() => {
@@ -101,9 +102,20 @@ const TaskDom = (() => {
         return taskContainer;
     };
 
+    const createTaskDetails = (taskObj) => {
+        const detailsContainer = DomElements.createDiv("task-details");
+        const taskNotes = DomElements.createPara("task-notes", taskObj.notes);
+        detailsContainer.appendChild(taskNotes);
+        
+        return detailsContainer;
+    };
+
     const appendTaskDiv = (taskObj) => {
         const displayContainer = document.querySelector(".display-container");
         const newTaskDiv = createTaskDiv(taskObj);
+
+        TaskCards.expandTask(newTaskDiv, taskObj);
+        
         displayContainer.appendChild(newTaskDiv);
     };
 
@@ -123,7 +135,7 @@ const TaskDom = (() => {
         });
     }
 
-    return { appendTaskDiv, createAllTaskDivs, expandCollapseTabs }
+    return { createTaskDetails, appendTaskDiv, createAllTaskDivs, expandCollapseTabs }
 
 })();
 
