@@ -61,7 +61,7 @@ const FormFields = (() => {
     const TodoTask = () => {
         const title = document.getElementById("task-title").value;
         const description = document.getElementById("task-description").value;
-        const notes = document.getElementById("task-description").value;
+        const notes = document.getElementById("task-notes").value;
         const dueDate = document.getElementById("task-due-date").value;
         const priority = document.getElementById("priority-level").value;
         const category = document.getElementById("task-category").value;
