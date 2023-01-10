@@ -1,5 +1,6 @@
 :root {
     --ivory: #f7efe7;
+    --hover-clr:#f1d2b0;
     --pink1: #f4dfdf;
     --pink2: #f1d1d1;
     --pink3: #dba39a;
@@ -101,7 +102,7 @@ aside,
 }
 
 .expanded-sidebar > div:hover {
-    background: var(--ivory);
+    background: var(--hover-clr);
 }
 
 #projects-form {
