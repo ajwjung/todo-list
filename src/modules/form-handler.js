@@ -40,7 +40,8 @@ const DataArr = (() => {
     };
 
     return { checkNewCategoryAdded, resetCategoryAdded, pushNewCategory,
-        checkTaskHasCategory, addCategoryToObject, pushNewTask, allCategories };
+        checkTaskHasCategory, addCategoryToObject, pushNewTask,
+        allCategories, allTasks };
 })();
 
 // Module to handle form fields

@@ -1,7 +1,6 @@
 import { DataArr, FormFields } from "./modules/form-handler.js";
 import { CategoryDom, DomElements, TaskDom } from "./modules/dom-elements.js";
 import { SidebarHandler } from "./modules/sidebar-handler.js";
-import { NameHandler } from "./modules/name-handler.js";
 
 const PageElements = (() => {
     const addNewCategory = () => {
@@ -22,7 +21,8 @@ const PageElements = (() => {
         taskForm.addEventListener("submit", function(e) {
             e.preventDefault();
             FormFields.newTaskHandler(e);
-            TaskDom.appendTaskDiv();
+            const newTask = FormFields.getTaskObject();
+            TaskDom.appendTaskDiv(newTask);
         });
     };
 

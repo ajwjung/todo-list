@@ -1,5 +1,6 @@
 import { NameHandler } from "./name-handler.js";
-import { DataArr, FormFields } from "./form-handler.js";
+import { DataArr } from "./form-handler.js";
+import { SidebarHandler } from "./sidebar-handler.js";
 
 // Handles dom for category only
 const CategoryDom = (() => {
@@ -100,10 +101,18 @@ const TaskDom = (() => {
         return taskContainer;
     };
 
-    const appendTaskDiv = () => {
+    const appendTaskDiv = (taskObj) => {
         const displayContainer = document.querySelector(".display-container");
-        const newTaskDiv = createTaskDiv(FormFields.getTaskObject());
+        const newTaskDiv = createTaskDiv(taskObj);
         displayContainer.appendChild(newTaskDiv);
+    };
+
+    const createAllTaskDivs = () => {
+        const currentTab = SidebarHandler.getTabName();
+        const currentCategoryTasks = DataArr.allTasks[currentTab];
+        currentCategoryTasks.forEach(task => {
+            appendTaskDiv(task);
+        });
     };
 
     const expandCollapseTabs = (boxName, hiddenBoxName) => {
@@ -114,7 +123,7 @@ const TaskDom = (() => {
         });
     }
 
-    return { appendTaskDiv, expandCollapseTabs }
+    return { appendTaskDiv, createAllTaskDivs, expandCollapseTabs }
 
 })();
 
