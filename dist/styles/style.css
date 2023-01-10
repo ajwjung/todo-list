@@ -114,6 +114,10 @@ aside,
     border: none;
 }
 
+.active-div {
+    background: var(--ivory);
+}
+
 /* Add new task form */
 .new-task-container,
 #task-form,

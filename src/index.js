@@ -29,12 +29,19 @@ const DefaultLoad = (() => {
         });
     };
 
-    return { addNewCategory, addNewTask };
+    const setDefaultActive = () => {
+        const defaultTab = document.getElementById("default");
+        SidebarHandler.setThisDivActive(defaultTab);
+    }
+
+    return { addNewCategory, addNewTask, setDefaultActive };
 })();
 
 const RenderPage = (() => {
     const datePicker = document.querySelector("#task-due-date");
     datePicker.min = new Date().toISOString().split("T")[0];
+
+    DefaultLoad.setDefaultActive();
 
     TaskDom.expandCollapseTabs(".sidebar", ".expanded-sidebar");
     TaskDom.expandCollapseTabs("#add-new-task", ".task-form-container");
