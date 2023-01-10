@@ -10,7 +10,7 @@ const NameHandler = (() => {
 
     const replaceHyphensWithSpaces = (name) => {
         if (checkHyphens(name)) {
-            return name.replace("-", " ");
+            return name.replace(/\-/g, " ");
         } else {
             return name;
         }
