@@ -178,7 +178,7 @@ h1 {
 }
 
 main,
-.task-container,
+/* .task-container, */
 .task-overview {
     display: flex;
     align-items: center;
@@ -230,7 +230,7 @@ main {
     margin: 0.5rem 0;
     padding: var(--lr-padding);
     height: min-content;
-    justify-content: space-between;
+    /* justify-content: space-between; */
 }
 
 .task-overview {
@@ -243,6 +243,10 @@ main {
 
 .description {
     font-style: italic;
+}
+
+.task-date {
+    margin-left: auto;
 }
 
 .hidden {

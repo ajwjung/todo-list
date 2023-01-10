@@ -82,11 +82,13 @@ const TaskDom = (() => {
         const checkbox = DomElements.createDiv("checkbox");
         const titlePara = DomElements.createPara("title", taskObj.title);
         const descriptionPara = DomElements.createPara("description", taskObj.description);
+        const taskDate = DomElements.createPara("task-date", taskObj.dueDate);
 
         newTaskDiv.appendChild(priorityIndicator);
         newTaskDiv.appendChild(checkbox);
         newTaskDiv.appendChild(titlePara);
         newTaskDiv.appendChild(descriptionPara);
+        newTaskDiv.appendChild(taskDate);
 
         return newTaskDiv;
     };
@@ -94,9 +96,7 @@ const TaskDom = (() => {
     const createTaskDiv = (taskObj) => {
         const taskContainer = DomElements.createDiv("task-container");
         const taskOverview = createOverviewDiv(taskObj);
-        const taskDate = DomElements.createPara("task-date", taskObj.dueDate);
         taskContainer.appendChild(taskOverview);
-        taskContainer.appendChild(taskDate);
 
         return taskContainer;
     };
