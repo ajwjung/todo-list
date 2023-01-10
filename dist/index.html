@@ -20,7 +20,7 @@
                     <div class="category" id="default">Default</div>
                     <div id="new-project">
                         <form id="projects-form">
-                            <input type="text" id="category-name" name="categoryName" pattern="[A-Za-z\s]+" title="Only Alphabets and whitespaces are accepted." placeholder="New category" required>
+                            <input type="text" id="category-name" name="categoryName" pattern="[A-Za-z\s]+" title="Only Alphabets and whitespaces are accepted." maxlength="20" placeholder="New category" required>
                             <button type="submit" id="add-new-category">+</button>
                         </form>
                     </div>
@@ -33,11 +33,11 @@
                     <form id="task-form">
                         <div class="form-field" id="title">
                             <label for="task-title">Task Name</label>
-                            <input type="text" id="task-title" name="taskTitle" pattern="[A-Za-z\s]+" title="Only Alphabets and whitespaces are accepted." placeholder="Pay bills" required>
+                            <input type="text" id="task-title" name="taskTitle" pattern="[A-Za-z\s]+" title="Only Alphabets and whitespaces are accepted." maxlength="30" placeholder="Pay bills" required>
                         </div>
                         <div class="form-field" id="description">
                             <label for="task-description">Description</label>
-                            <input type="text" id="task-description" name="taskDescription" placeholder="Water and utility" required>
+                            <input type="text" id="task-description" name="taskDescription" maxlength="100" placeholder="Water and utility" required>
                         </div>
                         <div class="form-field" id="notes">
                             <label for="task-notes">Notes</label>
