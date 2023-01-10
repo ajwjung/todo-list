@@ -1,23 +1,12 @@
+import { DataArr } from "./form-handler.js";
 import { DomElements } from "./dom-elements.js";
-import { NameHandler } from "./name-handler.js";
 
 const SidebarHandler = (() => {
     let currentCategory = "default";
-    let categoryClicked = false;
-
-    const toggleClicked = () => {
-        categoryClicked = true;
-    };
-
-    const resetClicked = () => {
-        categoryClicked = false;
-    }
 
     const changeCategory = (newCategory) => {
-        if (categoryClicked) {
-            currentCategory = newCategory;
-            console.log(newCategory);
-        }
+        currentCategory = newCategory;
+        console.log(newCategory);
     };
 
     const getTabName = () => {
@@ -30,7 +19,6 @@ const SidebarHandler = (() => {
             if (e.target.classList.contains("category")) {
                 // if any "category" div is clicked
                 // erase all contents
-                toggleClicked();
                 changeCategory(e.target.id);
                 DomElements.clearContents();
                 // create h1 with the category name
@@ -38,7 +26,11 @@ const SidebarHandler = (() => {
                 DomElements.appendH1(newHeading);
                 // create divs for all tasks in this category
 
-                resetClicked();
+                const currentTab = getTabName();
+                const currentCategoryTasks = DataArr.allTasks[currentTab];
+                currentCategory.forEach(task => {
+                    
+                })
             }
         });
     };
