@@ -1,6 +1,8 @@
 import { DataArr, FormFields } from "./modules/form-handler.js";
-import { CategoryDom, DomElements, TaskDom } from "./modules/dom-elements.js";
+import { DomElements } from "./modules/dom-elements.js";
 import { SidebarHandler } from "./modules/sidebar-handler.js";
+import { TaskDom } from "./modules/task-handler.js";
+import { CategoryDom } from "./modules/category-handler.js";
 
 const DefaultLoad = (() => {
     const addNewCategory = () => {
@@ -43,8 +45,8 @@ const RenderPage = (() => {
 
     DefaultLoad.setDefaultActive();
 
-    TaskDom.expandCollapseTabs(".sidebar", ".expanded-sidebar");
-    TaskDom.expandCollapseTabs("#add-new-task", ".task-form-container");
+    DomElements.expandCollapseTabs(".sidebar", ".expanded-sidebar");
+    DomElements.expandCollapseTabs("#add-new-task", ".task-form-container");
 
     const defaultH1 = DomElements.createCategoryH1(SidebarHandler.getTabName());
     DomElements.appendH1(defaultH1);

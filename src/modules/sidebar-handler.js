@@ -1,4 +1,5 @@
-import { DomElements, TaskDom } from "./dom-elements.js";
+import { DomElements } from "./dom-elements.js";
+import { TaskDom } from "./task-handler.js";
 
 const SidebarHandler = (() => {
     let currentCategory = "default";
