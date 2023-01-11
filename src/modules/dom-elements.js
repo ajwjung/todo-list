@@ -45,6 +45,24 @@ const DomElements = (() => {
         displayContainer.appendChild(heading);
     };
 
+    const createViewBtn = () => {
+        const newViewBtn = document.createElement("button");
+        newViewBtn.setAttribute("type", "button");
+        newViewBtn.classList.add("view-details");
+        newViewBtn.classList.add("filter-pink");
+        
+        return newViewBtn;
+    };
+
+    const createEditBtn = () => {
+        const newEditBtn = document.createElement("button");
+        newEditBtn.setAttribute("type", "button");
+        newEditBtn.classList.add("edit-details");
+        newEditBtn.classList.add("filter-pink");
+        
+        return newEditBtn;
+    };
+
     const expandCollapseTabs = (boxName, hiddenBoxName) => {
         const visibleBox = document.querySelector(boxName);
         const hiddenBox = document.querySelector(hiddenBoxName);
@@ -54,7 +72,8 @@ const DomElements = (() => {
     };
 
     return { addOptionsToSelect, clearContents, createDiv,
-        createPara, createCategoryH1, appendH1, expandCollapseTabs }
+        createPara, createCategoryH1, appendH1, 
+        createViewBtn, createEditBtn, expandCollapseTabs }
 
 })();
 

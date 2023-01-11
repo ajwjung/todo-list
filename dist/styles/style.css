@@ -91,6 +91,11 @@ aside,
     gap: 5px;
 }
 
+.dropdown-arrow {
+    height: 20px;
+    width: 20px;
+}
+
 .expanded-sidebar {
     min-height: fit-content;
     flex-direction: column;
@@ -249,6 +254,24 @@ main {
 
 .task-notes {
     word-wrap: break-word;
+}
+
+.view-details {
+    background: url("../../src/imgs/eye.svg");
+    height: 25px;
+    width: 25px;
+    border: none;
+}
+
+.edit-details {
+    background: url("../../src/imgs/pencil.svg");
+    height: 25px;
+    width: 25px;
+    border: none;
+}
+
+.filter-pink {
+    filter: invert(100%) sepia(95%) saturate(6430%) hue-rotate(292deg) brightness(76%) contrast(100%);
 }
 
 .hidden {

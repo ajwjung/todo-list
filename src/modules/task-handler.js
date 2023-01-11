@@ -11,12 +11,16 @@ const TaskDom = (() => {
         const titlePara = DomElements.createPara("title", taskObj.title);
         const descriptionPara = DomElements.createPara("description", taskObj.description);
         const taskDate = DomElements.createPara("task-date", taskObj.dueDate);
+        const viewBtn = DomElements.createViewBtn();
+        const editBtn = DomElements.createEditBtn();
 
         newTaskDiv.appendChild(priorityIndicator);
         newTaskDiv.appendChild(checkbox);
         newTaskDiv.appendChild(titlePara);
         newTaskDiv.appendChild(descriptionPara);
         newTaskDiv.appendChild(taskDate);
+        newTaskDiv.appendChild(viewBtn);
+        newTaskDiv.appendChild(editBtn);
 
         return newTaskDiv;
     };
@@ -40,8 +44,9 @@ const TaskDom = (() => {
     const appendTaskDiv = (taskObj) => {
         const displayContainer = document.querySelector(".display-container");
         const newTaskDiv = createTaskDiv(taskObj);
+        const viewDetailsBtn = newTaskDiv.querySelector(".view-details");
 
-        TaskExpansion.expandDiv(newTaskDiv, taskObj);
+        TaskExpansion.expandDiv(viewDetailsBtn, newTaskDiv, taskObj);
         displayContainer.appendChild(newTaskDiv);
     };
 
@@ -109,8 +114,8 @@ const TaskExpansion = (() => {
         };
     };
 
-    const expandDiv = (taskDiv, taskObj) => {
-        taskDiv.addEventListener("click", function(e) {
+    const expandDiv = (btn, taskDiv, taskObj) => {
+        btn.addEventListener("click", function(e) {
             expandHandler(taskDiv, taskObj);
         });
     };
