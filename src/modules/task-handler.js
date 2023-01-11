@@ -41,8 +41,7 @@ const TaskDom = (() => {
         const displayContainer = document.querySelector(".display-container");
         const newTaskDiv = createTaskDiv(taskObj);
 
-        TaskCards.expandTask(newTaskDiv, taskObj);
-
+        TaskExpansion.expandDiv(newTaskDiv, taskObj);
         displayContainer.appendChild(newTaskDiv);
     };
 
@@ -58,45 +57,68 @@ const TaskDom = (() => {
 
 })();
 
-const TaskCards = (() => {
-    let expanded = false;
+const TaskExpansion = (() => {
+    let taskExpanded = {};
 
-    const checkExpanded = () => {
-        return expanded;
+    // Use description in case task name gets reused
+    const getDivDescription = (div) => {
+        return div.querySelector(".description").textContent;
     };
 
-    const changeExpanded = () => {
-        expanded = true;
+    const checkTaskExists = (div) => {
+        return taskExpanded.hasOwnProperty(getDivDescription(div));
     };
 
-    const resetExpanded = () => {
-        expanded = false;
+    const getStatus = (div) => {
+        return taskExpanded[getDivDescription(div)];
+    }
+
+    const updateStatus = (div) => {
+        taskExpanded[getDivDescription(div)] = true;
+        console.log(taskExpanded);
     };
 
+    const resetStatus = (div) => {
+        taskExpanded[getDivDescription(div)] = false;
+        console.log(taskExpanded);
+    };
+
+    const expandTaskDiv = (taskDiv, taskObj) => {
+        const detailsDiv = TaskDom.createTaskDetails(taskObj);
+        taskDiv.appendChild(detailsDiv);
+    }
+    
     const resetTaskDiv = (taskDiv) => {
         taskDiv.removeChild(taskDiv.lastElementChild);
     };
 
-    const expandTaskHandler = (taskDiv, taskObj) => {
-        if (!(checkExpanded())) {
-            changeExpanded();
+    const expandHandler = (taskDiv, taskObj) => {
+        // If first time clicking on a task's div
+        if (!(checkTaskExists(taskDiv))) {
             taskDiv.classList.toggle("expand-task");
-            const detailsDiv = TaskDom.createTaskDetails(taskObj);
-            taskDiv.appendChild(detailsDiv);
-        } else if (checkExpanded()) {
-            resetExpanded();
-            taskDiv.classList.toggle("expand-task")
+            expandTaskDiv(taskDiv, taskObj);
+            updateStatus(taskDiv);
+        // Close div if opened
+        } else if (checkTaskExists(taskDiv) && (getStatus(taskDiv))) {
+            taskDiv.classList.toggle("expand-task");
             resetTaskDiv(taskDiv);
+            resetStatus(taskDiv);
+        // Open div if closed
+        } else if (checkTaskExists(taskDiv) && (!(getStatus(taskDiv)))) {
+            taskDiv.classList.toggle("expand-task");
+            expandTaskDiv(taskDiv, taskObj);
+            updateStatus(taskDiv);
         };
     };
 
-    const expandTask = (taskDiv, taskObj) => {
-        taskDiv.addEventListener("click", function (e) {
-            expandTaskHandler(taskDiv, taskObj);
+    const expandDiv = (taskDiv, taskObj) => {
+        taskDiv.addEventListener("click", function(e) {
+            expandHandler(taskDiv, taskObj);
         });
     };
 
-    return { expandTask }
+    return { expandDiv };
+
 })();
 
-export { TaskDom, TaskCards };
+export { TaskDom };

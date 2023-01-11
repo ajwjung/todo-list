@@ -34,7 +34,7 @@ const DefaultLoad = (() => {
     const setDefaultActive = () => {
         const defaultTab = document.getElementById("default");
         SidebarHandler.setThisDivActive(defaultTab);
-    }
+    };
 
     return { addNewCategory, addNewTask, setDefaultActive };
 })();
