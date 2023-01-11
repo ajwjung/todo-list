@@ -13,6 +13,7 @@ const DefaultLoad = (() => {
                 FormFields.newCategoryHandler(); // append to array
                 CategoryDom.appendCategoryDiv(); // add dom element
                 DomElements.addOptionsToSelect(); // add new option to select
+                projectForm.reset();
                 DataArr.resetCategoryAdded();
             }
         });
@@ -28,6 +29,7 @@ const DefaultLoad = (() => {
             if (newTask.category == currentTab) {
                 TaskDom.appendTaskDiv(newTask);
             };
+            taskForm.reset();
         });
     };
 
