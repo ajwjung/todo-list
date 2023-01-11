@@ -6,7 +6,6 @@ const SidebarHandler = (() => {
 
     const changeCategory = (newCategory) => {
         currentCategory = newCategory;
-        console.log(newCategory);
     };
 
     const getTabName = () => {

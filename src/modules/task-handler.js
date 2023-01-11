@@ -75,12 +75,10 @@ const TaskExpansion = (() => {
 
     const updateStatus = (div) => {
         taskExpanded[getDivDescription(div)] = true;
-        console.log(taskExpanded);
     };
 
     const resetStatus = (div) => {
         taskExpanded[getDivDescription(div)] = false;
-        console.log(taskExpanded);
     };
 
     const expandTaskDiv = (taskDiv, taskObj) => {

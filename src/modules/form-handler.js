@@ -20,7 +20,6 @@ const DataArr = (() => {
 
 	const pushNewCategory = (category) => {
 		allCategories.push(NameHandler.getHyphenatedName(category));
-        console.log(allCategories);
 	};
 
     const checkTaskHasCategory = (category) => {
@@ -34,9 +33,7 @@ const DataArr = (() => {
 
     const pushNewTask = () => {
         const newTask = FormFields.TodoTask();
-        console.log(allTasks[newTask.category])
         allTasks[newTask.category].push(newTask);
-        console.log(allTasks);
     };
 
     return { checkNewCategoryAdded, resetCategoryAdded, pushNewCategory,
