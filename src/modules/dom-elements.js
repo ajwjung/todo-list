@@ -63,6 +63,15 @@ const DomElements = (() => {
         return newEditBtn;
     };
 
+    const createDeleteBtn = () => {
+        const newDeleteBtn = document.createElement("button");
+        newDeleteBtn.setAttribute("type", "button");
+        newDeleteBtn.classList.add("delete-task");
+        newDeleteBtn.classList.add("filter-pink");
+        
+        return newDeleteBtn;
+    };
+
     const expandCollapseTabs = (boxName, hiddenBoxName) => {
         const visibleBox = document.querySelector(boxName);
         const hiddenBox = document.querySelector(hiddenBoxName);
@@ -73,7 +82,7 @@ const DomElements = (() => {
 
     return { addOptionsToSelect, clearContents, createDiv,
         createPara, createCategoryH1, appendH1, 
-        createViewBtn, createEditBtn, expandCollapseTabs }
+        createViewBtn, createEditBtn, createDeleteBtn, expandCollapseTabs }
 
 })();
 

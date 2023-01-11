@@ -256,18 +256,24 @@ main {
     word-wrap: break-word;
 }
 
-.view-details {
-    background: url("../../src/imgs/eye.svg");
+.view-details,
+.edit-details,
+.delete-task {
     height: 25px;
     width: 25px;
     border: none;
 }
 
+.view-details {
+    background: url("../../src/imgs/eye.svg");
+}
+
 .edit-details {
     background: url("../../src/imgs/pencil.svg");
-    height: 25px;
-    width: 25px;
-    border: none;
+}
+
+.delete-task {
+    background: url("../../src/imgs/trash-can-outline.svg");
 }
 
 .filter-pink {

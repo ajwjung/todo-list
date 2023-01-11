@@ -11,16 +11,18 @@ const TaskDom = (() => {
         const titlePara = DomElements.createPara("title", taskObj.title);
         const descriptionPara = DomElements.createPara("description", taskObj.description);
         const taskDate = DomElements.createPara("task-date", taskObj.dueDate);
-        const viewBtn = DomElements.createViewBtn();
-        const editBtn = DomElements.createEditBtn();
+        const viewTaskDetailsBtn = DomElements.createViewBtn();
+        const editTaskBtn = DomElements.createEditBtn();
+        const deleteTaskBtn = DomElements.createDeleteBtn();
 
         newTaskDiv.appendChild(priorityIndicator);
         newTaskDiv.appendChild(checkbox);
         newTaskDiv.appendChild(titlePara);
         newTaskDiv.appendChild(descriptionPara);
         newTaskDiv.appendChild(taskDate);
-        newTaskDiv.appendChild(viewBtn);
-        newTaskDiv.appendChild(editBtn);
+        newTaskDiv.appendChild(viewTaskDetailsBtn);
+        newTaskDiv.appendChild(editTaskBtn);
+        newTaskDiv.appendChild(deleteTaskBtn);
 
         return newTaskDiv;
     };
