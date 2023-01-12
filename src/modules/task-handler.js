@@ -1,5 +1,5 @@
 import { DomElements } from "./dom-elements.js";
-import { DataArr } from "./form-handler.js";
+import { DataArr } from "./storage-arrays.js";
 import { NameHandler } from "./name-handler.js";
 import { SidebarHandler } from "./sidebar-handler.js";
 

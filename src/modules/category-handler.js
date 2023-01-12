@@ -1,4 +1,4 @@
-import { DataArr } from "./form-handler.js";
+import { DataArr } from "./storage-arrays.js";
 import { NameHandler } from "./name-handler.js";
 
 // Handles dom for category only
