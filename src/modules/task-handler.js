@@ -6,9 +6,9 @@ import { SidebarHandler } from "./sidebar-handler.js";
 // Handles dom for tasks
 const TaskDom = (() => {
     const createOverviewDiv = (taskObj) => {
-        const newTaskDiv = DomElements.createDiv("task-overview");
+        const newTaskDiv = DomElements.createDiv("task-overview", "strikethrough");
         const priorityIndicator = DomElements.createDiv("priority-indicator", taskObj.priority);
-        const checkbox = DomElements.createDiv("checkbox");
+        const checkbox = DomElements.createDiv("checkbox", "unchecked");
         const titlePara = DomElements.createPara("title", taskObj.title);
         const descriptionPara = DomElements.createPara("description", taskObj.description);
         const taskDate = DomElements.createPara("task-date", taskObj.dueDate);
@@ -44,11 +44,20 @@ const TaskDom = (() => {
         return detailsContainer;
     };
 
+    const toggleCheckbox = (box) => {
+        box.addEventListener("click", function(e) {
+            box.parentNode.classList.toggle("strikethrough");
+            box.classList.toggle("unchecked");
+        });
+    };
+
     const appendTaskDiv = (taskObj) => {
         const displayContainer = document.querySelector(".display-container");
         const newTaskDiv = createTaskDiv(taskObj);
         const viewDetailsBtn = newTaskDiv.querySelector(".view-details");
+        const taskCheckbox = newTaskDiv.querySelector(".checkbox");
 
+        toggleCheckbox(taskCheckbox);
         TaskExpansion.expandDiv(viewDetailsBtn, newTaskDiv, taskObj);
         displayContainer.appendChild(newTaskDiv);
     };

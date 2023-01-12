@@ -227,6 +227,7 @@ main {
     width: 20px;
     border-radius: var(--cropped-border);
     border: 2px solid var(--purple2);
+    background: var(--purple1);
 }
 
 .task-container {
@@ -237,7 +238,9 @@ main {
 }
 
 .task-overview {
-    gap: var(--med-gap)
+    gap: var(--med-gap);
+    text-decoration: line-through;
+    font-style: italic;
 }
 
 .title {
@@ -286,4 +289,13 @@ main {
 
 .expand-task {
     min-height: 20vh;
+}
+
+.unchecked {
+    background: none;
+}
+
+.strikethrough {
+    text-decoration: none;
+    font-style: normal;
 }
