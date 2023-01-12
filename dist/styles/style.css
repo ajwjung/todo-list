@@ -287,6 +287,50 @@ main {
     filter: invert(100%) sepia(95%) saturate(6430%) hue-rotate(292deg) brightness(76%) contrast(100%);
 }
 
+/* Popup Form */
+.edit-task-container {
+    background: var(--pink2);
+    height: min-content;
+    width: clamp(400px, 50%, 35vw);
+    border: 2px solid var(--pink3);
+    
+    position: absolute;
+    top: 20%;
+    z-index: 3;
+}
+
+.edit-form-heading,
+#edit-task-form,
+.edit-form-field {
+    display: flex;
+    justify-content: center;
+}
+
+#edit-task-form,
+.edit-form-field {
+    flex-direction: column;
+}
+
+.edit-form-heading {
+    height: 10%;
+    width: 100%;
+    background: var(--pink3);
+    align-items: center;
+}
+.edit-form-container {
+    padding: 1rem;
+    
+}
+
+#edit-task-form {
+    gap: var(--med-gap);
+}
+
+#edit-task-notes {
+    resize: vertical;
+}
+
+/* Toggle rules */
 .hidden {
     display: none;
 }
