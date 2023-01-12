@@ -51,6 +51,10 @@ const TaskDom = (() => {
         });
     };
 
+    const toggleViewDetails = (icon) => {
+        icon.classList.toggle("hide-details");
+    }
+
     const appendTaskDiv = (taskObj) => {
         const displayContainer = document.querySelector(".display-container");
         const newTaskDiv = createTaskDiv(taskObj);
@@ -70,7 +74,7 @@ const TaskDom = (() => {
         });
     };
 
-    return { createTaskDetails, appendTaskDiv, createAllTaskDivs }
+    return { createTaskDetails, toggleViewDetails, appendTaskDiv, createAllTaskDivs }
 
 })();
 
@@ -128,6 +132,7 @@ const TaskExpansion = (() => {
 
     const expandDiv = (btn, taskDiv, taskObj) => {
         btn.addEventListener("click", function(e) {
+            TaskDom.toggleViewDetails(btn);
             expandHandler(taskDiv, taskObj);
         });
     };

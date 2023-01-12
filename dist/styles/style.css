@@ -268,7 +268,11 @@ main {
 }
 
 .view-details {
-    background: url("../../src/imgs/eye.svg");
+    background: url("../../src/imgs/chevron-down.svg");
+}
+
+.hide-details {
+    background: url("../../src/imgs/chevron-up.svg");
 }
 
 .edit-details {
