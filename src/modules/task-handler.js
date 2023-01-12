@@ -1,5 +1,6 @@
 import { DomElements } from "./dom-elements.js";
 import { DataArr } from "./form-handler.js";
+import { NameHandler } from "./name-handler.js";
 import { SidebarHandler } from "./sidebar-handler.js";
 
 // Handles dom for tasks
@@ -78,7 +79,7 @@ const TaskExpansion = (() => {
 
     const getStatus = (div) => {
         return taskExpanded[getDivDescription(div)];
-    }
+    };
 
     const updateStatus = (div) => {
         taskExpanded[getDivDescription(div)] = true;
@@ -91,7 +92,7 @@ const TaskExpansion = (() => {
     const expandTaskDiv = (taskDiv, taskObj) => {
         const detailsDiv = TaskDom.createTaskDetails(taskObj);
         taskDiv.appendChild(detailsDiv);
-    }
+    };
     
     const resetTaskDiv = (taskDiv) => {
         taskDiv.removeChild(taskDiv.lastElementChild);
@@ -122,8 +123,42 @@ const TaskExpansion = (() => {
         });
     };
 
-    return { expandDiv };
+    return { getDivDescription, expandDiv };
 
 })();
 
-export { TaskDom };
+const TaskRemoval = (() => {
+    const displayContainer = document.querySelector(".display-container");
+    
+    const deleteTaskObject = (e) => {
+        const taskDescription = TaskExpansion.getDivDescription(e.target.parentNode);
+        const categoryName = displayContainer.firstElementChild.textContent;
+        const modifiedName = NameHandler.getHyphenatedName(categoryName.toLowerCase());
+
+        const thisCategoryTasks = DataArr.allTasks[modifiedName];
+        for (let i = 0; i < thisCategoryTasks.length; i++) {
+            if (thisCategoryTasks[i].description == taskDescription) {
+                thisCategoryTasks.splice(i, 1);
+                DataArr.updateArr(modifiedName, thisCategoryTasks);
+            };
+        };
+    };
+
+    const deleteTaskCard = (div, e) => {
+        div.removeChild(e.target.parentNode.parentNode);
+    };
+
+    const removeTaskHandler = () => {
+        displayContainer.addEventListener("click", function(e) {
+            if (e.target.classList.contains("delete-task")) {
+                deleteTaskCard(displayContainer, e);
+                deleteTaskObject(e);
+            };
+        });
+    };
+
+    return { removeTaskHandler };
+
+})();
+
+export { TaskDom, TaskRemoval };

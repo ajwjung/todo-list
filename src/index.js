@@ -1,7 +1,7 @@
 import { DataArr, FormFields } from "./modules/form-handler.js";
 import { DomElements } from "./modules/dom-elements.js";
 import { SidebarHandler } from "./modules/sidebar-handler.js";
-import { TaskDom } from "./modules/task-handler.js";
+import { TaskDom, TaskRemoval } from "./modules/task-handler.js";
 import { CategoryDom } from "./modules/category-handler.js";
 
 const DefaultLoad = (() => {
@@ -57,4 +57,6 @@ const RenderPage = (() => {
     DefaultLoad.addNewTask();
 
     SidebarHandler.tabHandler();
+    TaskRemoval.removeTaskHandler();
+
 })();

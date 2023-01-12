@@ -12,11 +12,11 @@ const DataArr = (() => {
             categoryAdded = true;
         }
         return categoryAdded;
-    }
+    };
 
     const resetCategoryAdded = () => {
         categoryAdded = false;
-    }
+    };
 
 	const pushNewCategory = (category) => {
 		allCategories.push(NameHandler.getHyphenatedName(category));
@@ -36,16 +36,20 @@ const DataArr = (() => {
         allTasks[newTask.category].push(newTask);
     };
 
+    const updateArr = (category, arr) => {
+        allTasks[category] = arr;
+    };
+
     return { checkNewCategoryAdded, resetCategoryAdded, pushNewCategory,
         checkTaskHasCategory, addCategoryToObject, pushNewTask,
-        allCategories, allTasks };
+        updateArr, allCategories, allTasks };
 })();
 
 // Module to handle form fields
 const FormFields = (() => {
     const getCategoryName = () => {
         return document.querySelector("input[name='categoryName']").value;
-    }
+    };
 
     const newCategoryHandler = () => {
         const newCategoryName = getCategoryName();
@@ -64,7 +68,7 @@ const FormFields = (() => {
         const category = document.getElementById("task-category").value;
     
         return { title, description, notes, dueDate, priority, category }
-    }
+    };
 
     const getTaskObject = () => {
         return TodoTask();
