@@ -288,6 +288,17 @@ main {
 }
 
 /* Popup Form */
+.backdrop {
+    height: 100vh;
+    width: 100vw;
+    background: rgba(50, 50, 50, 0.75);
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+}
+
 .edit-task-container {
     background: var(--pink2);
     height: min-content;
@@ -295,11 +306,12 @@ main {
     border: 2px solid var(--pink3);
     
     position: absolute;
-    top: 20%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 3;
 }
 
-.edit-form-heading,
 #edit-task-form,
 .edit-form-field {
     display: flex;
@@ -315,11 +327,32 @@ main {
     height: 10%;
     width: 100%;
     background: var(--pink3);
+    
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     align-items: center;
 }
+
+.edit-form-heading > p {
+    grid-column: 2;
+    text-align: center;
+}
+
+#close-popup {
+    background: url("../../src/imgs/close.svg");
+    height: 25px;
+    width: 25px;
+    border: none;
+    grid-column: 3;
+    margin-left: 70%;
+}
+
 .edit-form-container {
     padding: 1rem;
-    
+}
+
+.filter-purple {
+    filter: invert(14%) sepia(32%) saturate(3765%) hue-rotate(311deg) brightness(95%) contrast(91%);
 }
 
 #edit-task-form {
