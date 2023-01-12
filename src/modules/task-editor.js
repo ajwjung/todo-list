@@ -1,19 +1,27 @@
 const TaskEditor = (() => {
     const displayContainer = document.querySelector(".display-container");
+    const popupBackdrop = document.querySelector(".backdrop");
+    const closePopupBtn = document.getElementById("close-popup");
 
     const editTaskHandler = () => {
         displayContainer.addEventListener("click", function(e) {
             if (e.target.classList.contains("edit-details")) {
-                togglePopup();
+                openPopup();
             };
         });
+
+        closePopupBtn.addEventListener("click", function(e) {
+            closePopup();
+        })
     };
 
-    const togglePopup = () => {
-        const popupBackdrop = document.querySelector(".backdrop");
-        console.log(popupBackdrop.classList);
-        popupBackdrop.classList.toggle("hidden");
+    const openPopup = () => {
+        popupBackdrop.classList.remove("hidden");
     };
+
+    const closePopup = () => {
+        popupBackdrop.classList.add("hidden");
+    }
 
     return { editTaskHandler };
 })();
