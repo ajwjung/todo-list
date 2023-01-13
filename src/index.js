@@ -4,7 +4,7 @@ import { SidebarHandler } from "./modules/sidebar-handler.js";
 import { TaskDom, TaskRemoval } from "./modules/task-handler.js";
 import { CategoryDom } from "./modules/category-handler.js";
 import { DataArr } from "./modules/storage-arrays.js";
-import { TaskObjectEditor } from "./modules/task-editor.js";
+import { TaskEditor } from "./modules/task-editor.js";
 
 const DefaultLoad = (() => {
     const addNewCategory = () => {
@@ -61,6 +61,6 @@ const RenderPage = (() => {
 
     SidebarHandler.tabHandler();
     TaskRemoval.removeTaskHandler();
-    TaskObjectEditor.editTaskHandler();
+    TaskEditor.editTaskHandler();
 
 })();

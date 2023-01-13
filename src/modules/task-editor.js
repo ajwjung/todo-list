@@ -2,7 +2,7 @@ import { DataArr } from "./storage-arrays.js";
 import { NameHandler } from "./name-handler.js";
 import { TaskExpansion, TaskRemoval } from "./task-handler.js";
 
-const TaskObjectEditor = (() => {
+const TaskEditor = (() => {
     const displayContainer = document.querySelector(".display-container");
     const popupBackdrop = document.querySelector(".backdrop");
     const closePopupBtn = document.getElementById("close-popup");
@@ -24,6 +24,7 @@ const TaskObjectEditor = (() => {
                 openPopup();
                 updateTaskVariable(e);
                 setCurrentDiv(e);
+                prefillForm();
             };
         });
 
@@ -36,7 +37,6 @@ const TaskObjectEditor = (() => {
             editTaskObject(e);
             editTaskForm.reset();
             closePopup();
-            // TaskCardEditor.updateCard();
             updateCard();
         });
     };
@@ -74,6 +74,23 @@ const TaskObjectEditor = (() => {
         DataArr.pushEditedTask();
     };
 
+    const prefillForm = () => {
+        const taskToEdit = getCurrentTask();
+        const editTitleBox = document.getElementById("edit-task-title");
+        const editDescriptionBox = document.getElementById("edit-task-description");
+        const editNotesBox = document.getElementById("edit-task-notes");
+        const editDateBox = document.getElementById("edit-task-due-date");
+        const editPriorityBox = document.getElementById("edit-priority-level");
+        const editCategoryBox = document.getElementById("edit-task-category");
+
+        editTitleBox.setAttribute("value", taskToEdit.title);
+        editDescriptionBox.setAttribute("value", taskToEdit.description);
+        editNotesBox.value = taskToEdit.notes;
+        editDateBox.setAttribute("value", taskToEdit.dueDate);
+        editPriorityBox.value = taskToEdit.priority;
+        editCategoryBox.value = taskToEdit.category;
+    }
+
     const updateCard = () => {
         const editedTask = DataArr.getUpdatedTask();
         const divToUpdate = getCurrentDiv();
@@ -95,4 +112,4 @@ const TaskObjectEditor = (() => {
     return { getCurrentDiv, getCurrentTask, editTaskHandler };
 })();
 
-export { TaskObjectEditor }
+export { TaskEditor }
