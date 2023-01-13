@@ -5,8 +5,8 @@ import { NameHandler } from "./name-handler.js";
 const DomElements = (() => {
     const displayContainer = document.querySelector(".display-container");
 
-    const addOptionsToSelect = () => {
-        const categorySelect = document.getElementById("task-category");
+    const addOptionsToSelect = (selectId) => {
+        const categorySelect = document.getElementById(selectId);
         const category = CategoryDom.getNewCategory();
         categorySelect.add(new Option(NameHandler.makeNamePresentable(category), category))
     };

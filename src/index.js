@@ -14,7 +14,8 @@ const DefaultLoad = (() => {
             if (DataArr.checkNewCategoryAdded(FormFields.getCategoryName())) {
                 FormFields.newCategoryHandler(); // append to array
                 CategoryDom.appendCategoryDiv(); // add dom element
-                DomElements.addOptionsToSelect(); // add new option to select
+                DomElements.addOptionsToSelect("task-category"); // adds to new task form
+                DomElements.addOptionsToSelect("edit-task-category"); // adds to edit task form
                 projectForm.reset();
                 DataArr.resetCategoryAdded();
             }
