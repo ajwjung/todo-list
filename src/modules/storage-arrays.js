@@ -6,6 +6,7 @@ const DataArr = (() => {
     let allCategories = ["default"];
 	let allTasks = { "default": [] };
     let categoryAdded = false;
+    let updatedTask;
     
     const checkNewCategoryAdded = (categoryName) => {
         const name = NameHandler.getHyphenatedName(categoryName).toLowerCase();
@@ -40,8 +41,13 @@ const DataArr = (() => {
 
     const pushEditedTask = () => {
         const newTask = FormFields.TodoTask("edit task");
+        updatedTask = newTask;
         allTasks[newTask.category].push(newTask);
         console.log(allTasks);
+    };
+
+    const getUpdatedTask = () => {
+        return updatedTask
     }
 
     const updateArr = (category, arr) => {
@@ -55,7 +61,7 @@ const DataArr = (() => {
 
     return { checkNewCategoryAdded, resetCategoryAdded, pushNewCategory,
         checkTaskHasCategory, addCategoryToObject, pushNewTask, pushEditedTask, 
-        updateArr, getRelevantTasks, allCategories, allTasks };
+        updateArr, getUpdatedTask, getRelevantTasks, allCategories, allTasks };
 })();
 
 export { DataArr };

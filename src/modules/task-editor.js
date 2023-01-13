@@ -7,13 +7,23 @@ const TaskObjectEditor = (() => {
     const popupBackdrop = document.querySelector(".backdrop");
     const closePopupBtn = document.getElementById("close-popup");
     const editTaskForm = document.getElementById("edit-task-form");
+    let currentDiv;
     let currentTask;
+
+    const setCurrentDiv = (e) => {
+        currentDiv = e.target.parentNode;
+    };
+
+    const getCurrentDiv = () => {
+        return currentDiv;
+    }
 
     const editTaskHandler = () => {
         displayContainer.addEventListener("click", function(e) {
             if (e.target.classList.contains("edit-details")) {
                 openPopup();
-                updateCurrentTask(e);
+                updateTaskVariable(e);
+                setCurrentDiv(e);
             };
         });
 
@@ -26,6 +36,8 @@ const TaskObjectEditor = (() => {
             editTaskObject(e);
             editTaskForm.reset();
             closePopup();
+            // TaskCardEditor.updateCard();
+            updateCard();
         });
     };
 
@@ -37,7 +49,7 @@ const TaskObjectEditor = (() => {
         popupBackdrop.classList.add("hidden");
     };
     
-    const updateCurrentTask = (e) => {
+    const updateTaskVariable = (e) => {
         const taskDescription = TaskExpansion.getDivDescription(e.target.parentNode);
         const categoryName = displayContainer.firstElementChild.textContent;
         const modifiedName = NameHandler.getHyphenatedName(categoryName.toLowerCase());
@@ -62,7 +74,25 @@ const TaskObjectEditor = (() => {
         DataArr.pushEditedTask();
     };
 
-    return { editTaskHandler };
+    const updateCard = () => {
+        const editedTask = DataArr.getUpdatedTask();
+        const divToUpdate = getCurrentDiv();
+        console.log(editedTask);
+        
+        divToUpdate.querySelector(".title").textContent = editedTask.title;
+        console.log(divToUpdate.querySelector(".title"))
+        divToUpdate.querySelector(".description").textContent = editedTask.description;
+        divToUpdate.querySelector(".task-date").textContent = editedTask.dueDate;
+        const priorityClasses = divToUpdate.querySelector(".priority-indicator").classList;
+        for (const level in ["low", "medium", "high"]) {
+            if (level in priorityClasses) {
+                priorityClasses.remove(level);
+                priorityClasses.add(editedTask.priority);
+            };
+        };
+    };
+
+    return { getCurrentDiv, getCurrentTask, editTaskHandler };
 })();
 
 export { TaskObjectEditor }
