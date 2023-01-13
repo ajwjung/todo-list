@@ -144,18 +144,18 @@ const TaskExpansion = (() => {
 const TaskRemoval = (() => {
     const displayContainer = document.querySelector(".display-container");
     
+    const deleteObjectHandler = (relevantTasks, description, categoryName) => {
+        const arrayWithoutTask = relevantTasks.filter(task => task.description !== description);
+        DataArr.updateArr(categoryName, arrayWithoutTask);
+    };
+
     const deleteTaskObject = (e) => {
         const taskDescription = TaskExpansion.getDivDescription(e.target.parentNode);
         const categoryName = displayContainer.firstElementChild.textContent;
         const modifiedName = NameHandler.getHyphenatedName(categoryName.toLowerCase());
 
-        const thisCategoryTasks = DataArr.allTasks[modifiedName];
-        for (let i = 0; i < thisCategoryTasks.length; i++) {
-            if (thisCategoryTasks[i].description == taskDescription) {
-                thisCategoryTasks.splice(i, 1);
-                DataArr.updateArr(modifiedName, thisCategoryTasks);
-            };
-        };
+        let thisCategoryTasks = DataArr.getRelevantTasks(modifiedName);
+        deleteObjectHandler(thisCategoryTasks, taskDescription, modifiedName);
     };
 
     const deleteTaskCard = (div, e) => {
@@ -171,8 +171,8 @@ const TaskRemoval = (() => {
         });
     };
 
-    return { removeTaskHandler };
+    return { deleteObjectHandler, removeTaskHandler };
 
 })();
 
-export { TaskDom, TaskRemoval };
+export { TaskDom, TaskRemoval, TaskExpansion };

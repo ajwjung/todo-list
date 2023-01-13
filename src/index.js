@@ -4,7 +4,7 @@ import { SidebarHandler } from "./modules/sidebar-handler.js";
 import { TaskDom, TaskRemoval } from "./modules/task-handler.js";
 import { CategoryDom } from "./modules/category-handler.js";
 import { DataArr } from "./modules/storage-arrays.js";
-import { TaskEditor } from "./modules/task-editor.js";
+import { TaskObjectEditor } from "./modules/task-editor.js";
 
 const DefaultLoad = (() => {
     const addNewCategory = () => {
@@ -27,7 +27,7 @@ const DefaultLoad = (() => {
             e.preventDefault();
             FormFields.newTaskHandler(e);
             const currentTab = SidebarHandler.getTabName();
-            const newTask = FormFields.getTaskObject();
+            const newTask = FormFields.getTaskObject("new task");
             if (newTask.category == currentTab) {
                 TaskDom.appendTaskDiv(newTask);
             };
@@ -60,6 +60,6 @@ const RenderPage = (() => {
 
     SidebarHandler.tabHandler();
     TaskRemoval.removeTaskHandler();
-    TaskEditor.editTaskHandler();
+    TaskObjectEditor.editTaskHandler();
 
 })();

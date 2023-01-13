@@ -14,19 +14,30 @@ const FormFields = (() => {
         DataArr.pushNewCategory(newCategoryName);
     };
 
-    const TodoTask = () => {
-        const title = document.getElementById("task-title").value;
-        const description = document.getElementById("task-description").value;
-        const notes = document.getElementById("task-notes").value;
-        const dueDate = document.getElementById("task-due-date").value;
-        const priority = document.getElementById("priority-level").value;
-        const category = document.getElementById("task-category").value;
-    
+    const TodoTask = (taskIndicator) => {
+        let title, description, notes, dueDate, priority, category;
+
+        if (taskIndicator == "new task") {
+            title = document.getElementById("task-title").value;
+            description = document.getElementById("task-description").value;
+            notes = document.getElementById("task-notes").value;
+            dueDate = document.getElementById("task-due-date").value;
+            priority = document.getElementById("priority-level").value;
+            category = document.getElementById("task-category").value;
+        } else if (taskIndicator == "edit task") {
+            title = document.getElementById("edit-task-title").value;
+            description = document.getElementById("edit-task-description").value;
+            notes = document.getElementById("edit-task-notes").value;
+            dueDate = document.getElementById("edit-task-due-date").value;
+            priority = document.getElementById("edit-priority-level").value;
+            category = document.getElementById("edit-task-category").value;
+        }
+
         return { title, description, notes, dueDate, priority, category }
     };
 
-    const getTaskObject = () => {
-        return TodoTask();
+    const getTaskObject = (taskIndicator) => {
+        return TodoTask(taskIndicator);
     };
 
     const newTaskHandler = (e) => {

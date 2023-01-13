@@ -33,17 +33,29 @@ const DataArr = (() => {
     };
 
     const pushNewTask = () => {
-        const newTask = FormFields.TodoTask();
+        const newTask = FormFields.TodoTask("new task");
         allTasks[newTask.category].push(newTask);
+        console.log(allTasks);
     };
+
+    const pushEditedTask = () => {
+        const newTask = FormFields.TodoTask("edit task");
+        allTasks[newTask.category].push(newTask);
+        console.log(allTasks);
+    }
 
     const updateArr = (category, arr) => {
         allTasks[category] = arr;
+        console.log(allTasks);
     };
 
+    const getRelevantTasks = (category) => {
+        return DataArr.allTasks[category];
+    }
+
     return { checkNewCategoryAdded, resetCategoryAdded, pushNewCategory,
-        checkTaskHasCategory, addCategoryToObject, pushNewTask,
-        updateArr, allCategories, allTasks };
+        checkTaskHasCategory, addCategoryToObject, pushNewTask, pushEditedTask, 
+        updateArr, getRelevantTasks, allCategories, allTasks };
 })();
 
 export { DataArr };
