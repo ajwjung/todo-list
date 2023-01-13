@@ -1,5 +1,4 @@
 import { DataArr } from "./storage-arrays.js";
-// import { NameHandler } from "./name-handler.js";
 import { TaskExpansion, TaskRemoval } from "./task-handler.js";
 import { SidebarHandler } from "./sidebar-handler.js";
 
@@ -109,19 +108,23 @@ const TaskEditor = (() => {
     const updateCard = () => {
         const editedTask = DataArr.getUpdatedTask();
         const divToUpdate = getCurrentDiv();
-        console.log(editedTask);
-        console.log(divToUpdate);
         
-        divToUpdate.querySelector(".title").textContent = editedTask.title;
-        divToUpdate.querySelector(".description").textContent = editedTask.description;
-        divToUpdate.querySelector(".task-date").textContent = editedTask.dueDate;
-        const priorityClasses = divToUpdate.querySelector(".priority-indicator").classList;
-        for (const level in ["low", "medium", "high"]) {
-            if (level in priorityClasses) {
-                priorityClasses.remove(level);
-                priorityClasses.add(editedTask.priority);
+        // update task card if still in same category
+        if (editedTask.category == SidebarHandler.getTabName()) {
+            divToUpdate.querySelector(".title").textContent = editedTask.title;
+            divToUpdate.querySelector(".description").textContent = editedTask.description;
+            divToUpdate.querySelector(".task-date").textContent = editedTask.dueDate;
+            const priorityClasses = divToUpdate.querySelector(".priority-indicator").classList;
+            for (const level in ["low", "medium", "high"]) {
+                if (level in priorityClasses) {
+                    priorityClasses.remove(level);
+                    priorityClasses.add(editedTask.priority);
+                };
             };
-        };
+        } else {
+            // remove from display if different category
+            TaskRemoval.deleteTaskCard(divToUpdate.parentNode, divToUpdate);
+        }
     };
 
 

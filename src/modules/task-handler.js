@@ -167,20 +167,20 @@ const TaskRemoval = (() => {
         deleteObjectHandler(thisCategoryTasks, taskDescription, modifiedName);
     };
 
-    const deleteTaskCard = (div, e) => {
-        div.removeChild(e.target.parentNode.parentNode);
+    const deleteTaskCard = (div, divToRemove) => {
+        div.removeChild(divToRemove);
     };
 
     const removeTaskHandler = () => {
         displayContainer.addEventListener("click", function(e) {
             if (e.target.classList.contains("delete-task")) {
-                deleteTaskCard(displayContainer, e);
+                deleteTaskCard(displayContainer, e.target.parentNode.parentNode);
                 deleteTaskObject(e);
             };
         });
     };
 
-    return { deleteObjectHandler, removeTaskHandler };
+    return { deleteObjectHandler, deleteTaskCard, removeTaskHandler };
 
 })();
 
