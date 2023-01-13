@@ -115,12 +115,8 @@ const TaskEditor = (() => {
             divToUpdate.querySelector(".description").textContent = editedTask.description;
             divToUpdate.querySelector(".task-date").textContent = editedTask.dueDate;
             const priorityClasses = divToUpdate.querySelector(".priority-indicator").classList;
-            for (const level in ["low", "medium", "high"]) {
-                if (level in priorityClasses) {
-                    priorityClasses.remove(level);
-                    priorityClasses.add(editedTask.priority);
-                };
-            };
+            priorityClasses.remove("low", "medium", "high");
+            priorityClasses.add(editedTask.priority);
         } else {
             // remove from display if different category
             TaskRemoval.deleteTaskCard(divToUpdate.parentNode, divToUpdate);
