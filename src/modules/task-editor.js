@@ -1,6 +1,7 @@
 import { DataArr } from "./storage-arrays.js";
-import { NameHandler } from "./name-handler.js";
+// import { NameHandler } from "./name-handler.js";
 import { TaskExpansion, TaskRemoval } from "./task-handler.js";
+import { SidebarHandler } from "./sidebar-handler.js";
 
 const TaskEditor = (() => {
     const displayContainer = document.querySelector(".display-container");
@@ -9,6 +10,7 @@ const TaskEditor = (() => {
     const editTaskForm = document.getElementById("edit-task-form");
     let currentDiv;
     let currentTask;
+    let taskUpdated = false;
 
     const setCurrentDiv = (e) => {
         currentDiv = e.target.parentNode;
@@ -16,7 +18,19 @@ const TaskEditor = (() => {
 
     const getCurrentDiv = () => {
         return currentDiv;
-    }
+    };
+
+    const setStatus = () => {
+        taskUpdated = true;
+    };
+
+    const resetStatus = () => {
+        taskUpdated = false;
+    };
+
+    const getTaskStatus = () => {
+        return taskUpdated;
+    };
 
     const editTaskHandler = () => {
         displayContainer.addEventListener("click", function(e) {
@@ -25,6 +39,7 @@ const TaskEditor = (() => {
                 updateTaskVariable(e);
                 setCurrentDiv(e);
                 prefillForm();
+                resetStatus();
             };
         });
 
@@ -38,6 +53,7 @@ const TaskEditor = (() => {
             editTaskForm.reset();
             closePopup();
             updateCard();
+            setStatus();
         });
     };
 
@@ -51,10 +67,9 @@ const TaskEditor = (() => {
     
     const updateTaskVariable = (e) => {
         const taskDescription = TaskExpansion.getDivDescription(e.target.parentNode);
-        const categoryName = displayContainer.firstElementChild.textContent;
-        const modifiedName = NameHandler.getHyphenatedName(categoryName.toLowerCase());
+        const categoryName = SidebarHandler.getTabName();
 
-        let thisCategoryTasks = DataArr.getRelevantTasks(modifiedName);
+        let thisCategoryTasks = DataArr.getRelevantTasks(categoryName);
 
         for (let i = 0; i < thisCategoryTasks.length; i++) {
             if (thisCategoryTasks[i].description == taskDescription) {
@@ -95,9 +110,9 @@ const TaskEditor = (() => {
         const editedTask = DataArr.getUpdatedTask();
         const divToUpdate = getCurrentDiv();
         console.log(editedTask);
+        console.log(divToUpdate);
         
         divToUpdate.querySelector(".title").textContent = editedTask.title;
-        console.log(divToUpdate.querySelector(".title"))
         divToUpdate.querySelector(".description").textContent = editedTask.description;
         divToUpdate.querySelector(".task-date").textContent = editedTask.dueDate;
         const priorityClasses = divToUpdate.querySelector(".priority-indicator").classList;
@@ -109,7 +124,8 @@ const TaskEditor = (() => {
         };
     };
 
-    return { getCurrentDiv, getCurrentTask, editTaskHandler };
+
+    return { getCurrentDiv, getCurrentTask, getTaskStatus, editTaskHandler };
 })();
 
 export { TaskEditor }

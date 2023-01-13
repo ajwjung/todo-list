@@ -2,6 +2,7 @@ import { DomElements } from "./dom-elements.js";
 import { DataArr } from "./storage-arrays.js";
 import { NameHandler } from "./name-handler.js";
 import { SidebarHandler } from "./sidebar-handler.js";
+import { TaskEditor } from "./task-editor.js";
 
 // Handles dom for tasks
 const TaskDom = (() => {
@@ -68,7 +69,7 @@ const TaskDom = (() => {
 
     const createAllTaskDivs = () => {
         const currentTab = SidebarHandler.getTabName();
-        const currentCategoryTasks = DataArr.allTasks[currentTab];
+        const currentCategoryTasks = DataArr.getRelevantTasks(currentTab);
         currentCategoryTasks.forEach(task => {
             appendTaskDiv(task);
         });
@@ -111,11 +112,15 @@ const TaskExpansion = (() => {
         taskDiv.removeChild(taskDiv.lastElementChild);
     };
 
-    const expandHandler = (taskDiv, taskObj) => {
+    const expandHandler = (taskDiv, taskObj, taskStatus) => {
         // If first time clicking on a task's div
         if (!(checkTaskExists(taskDiv))) {
             taskDiv.classList.toggle("expand-task");
-            expandTaskDiv(taskDiv, taskObj);
+            if (taskStatus) {
+                expandTaskDiv(taskDiv, DataArr.getUpdatedTask());
+            } else {
+                expandTaskDiv(taskDiv, taskObj)
+            };
             updateStatus(taskDiv);
         // Close div if opened
         } else if (checkTaskExists(taskDiv) && (getStatus(taskDiv))) {
@@ -125,7 +130,11 @@ const TaskExpansion = (() => {
         // Open div if closed
         } else if (checkTaskExists(taskDiv) && (!(getStatus(taskDiv)))) {
             taskDiv.classList.toggle("expand-task");
-            expandTaskDiv(taskDiv, taskObj);
+            if (taskStatus) {
+                expandTaskDiv(taskDiv, DataArr.getUpdatedTask());
+            } else {
+                expandTaskDiv(taskDiv, taskObj)
+            };
             updateStatus(taskDiv);
         };
     };
@@ -133,7 +142,7 @@ const TaskExpansion = (() => {
     const expandDiv = (btn, taskDiv, taskObj) => {
         btn.addEventListener("click", function(e) {
             TaskDom.toggleViewDetails(btn);
-            expandHandler(taskDiv, taskObj);
+            expandHandler(taskDiv, taskObj, TaskEditor.getTaskStatus());
         });
     };
 
