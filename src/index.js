@@ -18,7 +18,7 @@ const DefaultLoad = (() => {
         };
     };
 
-    const loadCategories = () => {
+    const loadSavedCategories = () => {
         const allCategories = CategoryStorage.getCategories();
         if (allCategories && allCategories.length > 1) {
             for (let i = 1; i < allCategories.length; i++) {
@@ -27,6 +27,10 @@ const DefaultLoad = (() => {
             };
             setOtherActive();
         };
+    };
+
+    const loadSavedTasks = () => {
+        TaskDom.createAllTaskDivs();
     };
 
     const addNewCategory = () => {
@@ -68,25 +72,26 @@ const DefaultLoad = (() => {
         SidebarHandler.setThisDivActive(lastOpenedTab);
     };
 
-    return { setDefault, loadCategories, addNewCategory, addNewTask, setDefaultActive };
+    return { setDefault, loadSavedCategories, loadSavedTasks, 
+        addNewCategory, addNewTask, setDefaultActive };
 })();
 
 const RenderPage = (() => {
     const datePicker = document.querySelector("#task-due-date");
     datePicker.min = new Date().toISOString().split("T")[0];
 
-    DefaultLoad.setDefault();
-    DefaultLoad.loadCategories();
-
-    DomElements.expandCollapseTabs(".sidebar", ".expanded-sidebar");
-    DomElements.expandCollapseTabs("#add-new-task", ".task-form-container");
-
     const defaultH1 = DomElements.createCategoryH1(SidebarHandler.getTabName());
     DomElements.appendH1(defaultH1);
 
+    DefaultLoad.setDefault();
+    DefaultLoad.loadSavedCategories();
+    DefaultLoad.loadSavedTasks();
     DefaultLoad.addNewCategory();
     DefaultLoad.addNewTask();
-
+    
+    DomElements.expandCollapseTabs(".sidebar", ".expanded-sidebar");
+    DomElements.expandCollapseTabs("#add-new-task", ".task-form-container");
+    
     SidebarHandler.tabHandler();
     TaskRemoval.removeTaskHandler();
     TaskEditor.editTaskHandler();
