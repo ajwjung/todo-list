@@ -13,6 +13,9 @@ const DefaultLoad = (() => {
             CategoryStorage.setCategories();
             TaskStorage.setTasks();
             SidebarHandler.setInitialCategory();
+            
+            const defaultH1 = DomElements.createCategoryH1("default");
+            DomElements.appendH1(defaultH1);
             setDefaultActive();
         };
     };
@@ -24,6 +27,9 @@ const DefaultLoad = (() => {
                 CategoryDom.appendCategoryDiv(allCategories[i]);
                 DomElements.addExistingOptions(allCategories[i]);
             };
+            DomElements.clearContents();
+            const defaultH1 = DomElements.createCategoryH1(SidebarHandler.getTabName());
+            DomElements.appendH1(defaultH1);
             setOtherActive();
         };
     };

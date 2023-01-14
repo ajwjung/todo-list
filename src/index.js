@@ -8,9 +8,6 @@ import { DefaultLoad } from "./modules/default-load.js";
 const RenderPage = (() => {
     FormFields.setMinDatePicker("#task-due-date");
 
-    const defaultH1 = DomElements.createCategoryH1(SidebarHandler.getTabName());
-    DomElements.appendH1(defaultH1);
-
     DefaultLoad.setDefault();
     DefaultLoad.loadSavedCategories();
     DefaultLoad.loadSavedTasks();
