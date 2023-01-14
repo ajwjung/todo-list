@@ -60,11 +60,13 @@ const DefaultLoad = (() => {
         });
     };
 
+    // Default tab
     const setDefaultActive = () => {
         const defaultTab = document.getElementById("default");
         SidebarHandler.setThisDivActive(defaultTab);
     };
 
+    // Change default tab
     const setOtherActive = () => {
         SidebarHandler.resetActiveDiv();
         const lastOpenedTab = document.getElementById(SidebarHandler.getTabName());

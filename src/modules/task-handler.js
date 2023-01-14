@@ -5,7 +5,6 @@ import { SidebarHandler } from "./sidebar-handler.js";
 import { TaskEditor } from "./task-editor.js";
 import { TaskStorage } from "./local-storage.js";
 
-// Handles dom for tasks
 const TaskDom = (() => {
     const createOverviewDiv = (taskObj) => {
         const newTaskDiv = DomElements.createDiv("task-overview", "strikethrough");
@@ -154,6 +153,7 @@ const TaskExpansion = (() => {
 const TaskRemoval = (() => {
     const displayContainer = document.querySelector(".display-container");
     
+    // Modifies the storage array
     const deleteObjectHandler = (relevantTasks, description, categoryName) => {
         const arrayWithoutTask = relevantTasks.filter(task => task.description !== description);
         TaskStorage.removeTask(categoryName, arrayWithoutTask);

@@ -33,6 +33,7 @@ const TaskEditor = (() => {
     };
 
     const editTaskHandler = () => {
+        // When edit button clicked
         displayContainer.addEventListener("click", function(e) {
             if (e.target.classList.contains("edit-details")) {
                 openPopup();
@@ -43,10 +44,12 @@ const TaskEditor = (() => {
             };
         });
 
+        // Popup closed
         closePopupBtn.addEventListener("click", function(e) {
             closePopup();
         });
 
+        // When edited task form submitted
         editTaskForm.addEventListener("submit", function(e) {
             e.preventDefault();
             editTaskObject(); 
@@ -65,6 +68,7 @@ const TaskEditor = (() => {
         popupBackdrop.classList.add("hidden");
     };
     
+    // Allows us to find the current task    
     const setCurrentTaskVar = (e) => {
         const taskDescription = TaskExpansion.getDivDescription(e.target.parentNode);
         const categoryName = SidebarHandler.getTabName();
@@ -82,6 +86,7 @@ const TaskEditor = (() => {
         return currentTask;
     };
 
+    // Modifies task in storage array
     const editTaskObject = () => {
         const taskToEdit = getCurrentTask();
         const taskCategory = taskToEdit.category;
@@ -91,7 +96,6 @@ const TaskEditor = (() => {
 
     const prefillForm = () => {
         const taskToEdit = getCurrentTask();
-        console.log(taskToEdit);
         const editTitleBox = document.getElementById("edit-task-title");
         const editDescriptionBox = document.getElementById("edit-task-description");
         const editNotesBox = document.getElementById("edit-task-notes");

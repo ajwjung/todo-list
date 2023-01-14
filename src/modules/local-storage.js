@@ -55,7 +55,6 @@ const TaskStorage = (() => {
 
     const updateTaskArr = (updatedArr) => {
         localStorage.setItem("allTasks", JSON.stringify(updatedArr));
-        console.log(getTasks());
     };
 
     const addCategoryToObject = (category) => {

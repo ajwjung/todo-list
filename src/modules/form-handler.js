@@ -45,6 +45,7 @@ const FormFields = (() => {
         TaskStorage.pushTask("new task");
     };
 
+    // Min date is current date
     const setMinDatePicker = (divName) => {
         const datePicker = document.querySelector(divName);
         datePicker.min = new Date().toISOString().split("T")[0];
