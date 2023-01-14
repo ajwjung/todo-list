@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif&display=swap');
+
 :root {
     --ivory: #f7efe7;
     --hover-clr:#f1d2b0;
@@ -14,10 +16,12 @@
     --bold-font: 600;
     --lr-padding: 0 1rem;
     --med-gap: 1rem;
+    --font: 'PT Serif', serif;
 }
 
 * {
     box-sizing: border-box;
+    font-family: var(--font);
 }
 
 body {
