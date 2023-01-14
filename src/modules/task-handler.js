@@ -3,6 +3,7 @@ import { DataArr } from "./storage-arrays.js";
 import { NameHandler } from "./name-handler.js";
 import { SidebarHandler } from "./sidebar-handler.js";
 import { TaskEditor } from "./task-editor.js";
+import { TaskStorage } from "./local-storage.js";
 
 // Handles dom for tasks
 const TaskDom = (() => {
@@ -155,7 +156,7 @@ const TaskRemoval = (() => {
     
     const deleteObjectHandler = (relevantTasks, description, categoryName) => {
         const arrayWithoutTask = relevantTasks.filter(task => task.description !== description);
-        DataArr.updateArr(categoryName, arrayWithoutTask);
+        TaskStorage.removeTask(categoryName, arrayWithoutTask);
     };
 
     const deleteTaskObject = (e) => {

@@ -91,6 +91,7 @@ const TaskEditor = (() => {
 
     const prefillForm = () => {
         const taskToEdit = getCurrentTask();
+        console.log(taskToEdit);
         const editTitleBox = document.getElementById("edit-task-title");
         const editDescriptionBox = document.getElementById("edit-task-description");
         const editNotesBox = document.getElementById("edit-task-notes");

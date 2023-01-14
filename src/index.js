@@ -30,11 +30,10 @@ const DefaultLoad = (() => {
         const projectForm = document.querySelector("#projects-form");
         projectForm.addEventListener("submit", function(e) {
             e.preventDefault();
-            const newCategory = CategoryDom.getNewCategory();;
             if (DataArr.checkNewCategoryAdded(FormFields.getCategoryName())) {
                 FormFields.newCategoryHandler(); // append to array
-                CategoryDom.appendCategoryDiv(newCategory); // add dom element
-                DomElements.addNewOptionToSelect(newCategory); 
+                CategoryDom.appendCategoryDiv(CategoryDom.getNewCategory()); // add dom element
+                DomElements.addNewOptionToSelect(CategoryDom.getNewCategory()); 
                 projectForm.reset();
                 DataArr.resetCategoryAdded();
             }

@@ -47,6 +47,12 @@ const TaskStorage = (() => {
         updateTaskArr(allTasks);
     };
 
+    const removeTask = (categoryName, arrayWithoutTask) => {
+        const allTasks = getTasks();
+        allTasks[categoryName] = arrayWithoutTask;
+        updateTaskArr(allTasks);
+    };
+
     const updateTaskArr = (updatedArr) => {
         localStorage.setItem("allTasks", JSON.stringify(updatedArr));
         console.log(getTasks());
@@ -59,7 +65,8 @@ const TaskStorage = (() => {
         updateTaskArr(allTasks);
     };
 
-    return { setTasks, getTasks, pushTask, addCategoryToObject };
+    return { setTasks, getTasks, pushTask, 
+        removeTask, updateTaskArr, addCategoryToObject };
 })();
 
 export { CategoryStorage, TaskStorage };

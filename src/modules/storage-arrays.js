@@ -4,16 +4,15 @@ import { CategoryStorage, TaskStorage } from "./local-storage.js";
 
 // Handling storage arrays
 const DataArr = (() => {
-    let allCategories = CategoryStorage.getCategories();
-    let allTasks = TaskStorage.getTasks();
     let categoryAdded = false;
     let updatedTask;
     
     const checkNewCategoryAdded = (categoryName) => {
         const name = NameHandler.getHyphenatedName(categoryName).toLowerCase();
-        if (!(allCategories.includes(name))) {
+        if (!(CategoryStorage.getCategories().includes(name))) {
             categoryAdded = true;
-        }
+        };
+
         return categoryAdded;
     };
 
@@ -26,7 +25,7 @@ const DataArr = (() => {
 	};
 
     const checkTaskHasCategory = (category) => {
-        return (allTasks.hasOwnProperty(category));
+        return (TaskStorage.getTasks().hasOwnProperty(category));
     };
 
     const updateTaskVariable = (newTask) => {
@@ -37,18 +36,19 @@ const DataArr = (() => {
         return updatedTask;
     };
 
-    const updateArr = (category, arr) => {
-        allTasks[category] = arr;
-        console.log(allTasks);
-    };
+    // const updateArrWithoutTask = (category, arr) => {
+    //     const allTasks = TaskStorage.getTasks();
+    //     allTasks[category] = arr;
+    //     localStorage.setItem("allTasks", JSON.stringify(allTasks));
+    // };
 
     const getRelevantTasks = (category) => {
-        return allTasks[category];
+        return TaskStorage.getTasks()[category];
     }
 
     return { checkNewCategoryAdded, resetCategoryAdded, pushNewCategory,
         checkTaskHasCategory, updateTaskVariable, 
-        updateArr, getUpdatedTask, getRelevantTasks, allCategories, allTasks };
+        getUpdatedTask, getRelevantTasks };
 })();
 
 export { DataArr };
