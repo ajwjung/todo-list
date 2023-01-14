@@ -2,14 +2,16 @@ import { DomElements } from "./dom-elements.js";
 import { TaskDom } from "./task-handler.js";
 
 const SidebarHandler = (() => {
-    let currentCategory = "default";
+    const setInitialCategory = () => {
+        localStorage.setItem("currentCategory", "default");
+    };
 
     const changeCategory = (newCategory) => {
-        currentCategory = newCategory;
+        localStorage.setItem("currentCategory", newCategory);
     };
 
     const getTabName = () => {
-        return currentCategory;
+        return localStorage.getItem("currentCategory");
     };
 
     const setThisDivActive = (div) => {
@@ -38,7 +40,8 @@ const SidebarHandler = (() => {
         });
     };
 
-    return { getTabName, setThisDivActive, tabHandler }
+    return { setInitialCategory, getTabName, resetActiveDiv, 
+        setThisDivActive, tabHandler }
 })();
 
 export { SidebarHandler };

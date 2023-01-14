@@ -13,7 +13,9 @@ const DefaultLoad = (() => {
         if (!(CategoryStorage.getCategories() && TaskStorage.getTasks())) {
             CategoryStorage.setCategories();
             TaskStorage.setTasks();
-        }
+            SidebarHandler.setInitialCategory();
+            setDefaultActive();
+        };
     };
 
     const loadCategories = () => {
@@ -23,6 +25,7 @@ const DefaultLoad = (() => {
                 CategoryDom.appendCategoryDiv(allCategories[i]);
                 DomElements.addExistingOptions(allCategories[i]);
             };
+            setOtherActive();
         };
     };
 
@@ -59,6 +62,12 @@ const DefaultLoad = (() => {
         SidebarHandler.setThisDivActive(defaultTab);
     };
 
+    const setOtherActive = () => {
+        SidebarHandler.resetActiveDiv();
+        const lastOpenedTab = document.getElementById(SidebarHandler.getTabName());
+        SidebarHandler.setThisDivActive(lastOpenedTab);
+    };
+
     return { setDefault, loadCategories, addNewCategory, addNewTask, setDefaultActive };
 })();
 
@@ -68,7 +77,6 @@ const RenderPage = (() => {
 
     DefaultLoad.setDefault();
     DefaultLoad.loadCategories();
-    DefaultLoad.setDefaultActive();
 
     DomElements.expandCollapseTabs(".sidebar", ".expanded-sidebar");
     DomElements.expandCollapseTabs("#add-new-task", ".task-form-container");
