@@ -1,10 +1,11 @@
 import { NameHandler } from "./name-handler.js";
 import { FormFields } from "./form-handler.js";
+import { CategoryStorage, TaskStorage } from "./local-storage.js";
 
 // Handling storage arrays
 const DataArr = (() => {
-    let allCategories = ["default"];
-	let allTasks = { "default": [] };
+    let allCategories = CategoryStorage.getCategories();
+    let allTasks = TaskStorage.getTasks();
     let categoryAdded = false;
     let updatedTask;
     
@@ -21,34 +22,20 @@ const DataArr = (() => {
     };
 
 	const pushNewCategory = (category) => {
-		allCategories.push(NameHandler.getHyphenatedName(category));
+        CategoryStorage.pushCategory(NameHandler.getHyphenatedName(category));
 	};
 
     const checkTaskHasCategory = (category) => {
         return (allTasks.hasOwnProperty(category));
     };
 
-    const addCategoryToObject = (category) => {
-        // Creates new key in allTasks object
-        allTasks[NameHandler.getHyphenatedName(category)] = [];
-    };
-
-    const pushNewTask = () => {
-        const newTask = FormFields.TodoTask("new task");
-        allTasks[newTask.category].push(newTask);
-        console.log(allTasks);
-    };
-
-    const pushEditedTask = () => {
-        const newTask = FormFields.TodoTask("edit task");
+    const updateTaskVariable = (newTask) => {
         updatedTask = newTask;
-        allTasks[newTask.category].push(newTask);
-        console.log(allTasks);
     };
 
     const getUpdatedTask = () => {
-        return updatedTask
-    }
+        return updatedTask;
+    };
 
     const updateArr = (category, arr) => {
         allTasks[category] = arr;
@@ -56,11 +43,11 @@ const DataArr = (() => {
     };
 
     const getRelevantTasks = (category) => {
-        return DataArr.allTasks[category];
+        return allTasks[category];
     }
 
     return { checkNewCategoryAdded, resetCategoryAdded, pushNewCategory,
-        checkTaskHasCategory, addCategoryToObject, pushNewTask, pushEditedTask, 
+        checkTaskHasCategory, updateTaskVariable, 
         updateArr, getUpdatedTask, getRelevantTasks, allCategories, allTasks };
 })();
 

@@ -1,10 +1,11 @@
-import { DataArr } from "./storage-arrays.js";
 import { NameHandler } from "./name-handler.js";
+import { CategoryStorage } from "./local-storage.js";
 
 // Handles dom for category only
 const CategoryDom = (() => {
     const getNewCategory = () => {
-        return DataArr.allCategories[DataArr.allCategories.length - 1];
+        const allCategories = CategoryStorage.getCategories();
+        return allCategories[allCategories.length - 1];
     };
 
     const createCategoryDiv = (category) => {
@@ -15,13 +16,13 @@ const CategoryDom = (() => {
         return newCategoryDiv;
     };
 
-    const appendCategoryDiv = () => {
+    const appendCategoryDiv = (category) => {
         const sidebarDropdown = document.querySelector(".expanded-sidebar");
-        const newDiv = createCategoryDiv(getNewCategory());
+        const newDiv = createCategoryDiv(category);
         sidebarDropdown.insertBefore(newDiv, sidebarDropdown.lastElementChild);
     };
 
-    return { getNewCategory, appendCategoryDiv };
+    return { getNewCategory, createCategoryDiv, appendCategoryDiv };
 })();
 
 export { CategoryDom };

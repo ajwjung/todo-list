@@ -1,4 +1,5 @@
 import { DataArr } from "./storage-arrays.js";
+import { TaskStorage } from "./local-storage.js";
 
 // Module to handle form fields
 const FormFields = (() => {
@@ -9,7 +10,7 @@ const FormFields = (() => {
     const newCategoryHandler = () => {
         const newCategoryName = getCategoryName();
         if (!(DataArr.checkTaskHasCategory(newCategoryName))) {
-            DataArr.addCategoryToObject(newCategoryName);
+            TaskStorage.addCategoryToObject(newCategoryName);
         };
         DataArr.pushNewCategory(newCategoryName);
     };
@@ -40,8 +41,8 @@ const FormFields = (() => {
         return TodoTask(taskIndicator);
     };
 
-    const newTaskHandler = (e) => {
-        DataArr.pushNewTask(TodoTask(e));
+    const newTaskHandler = () => {
+        TaskStorage.pushTask("new task");
     };
 
     return { getCategoryName, newCategoryHandler, TodoTask,

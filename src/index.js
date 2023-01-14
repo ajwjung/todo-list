@@ -5,17 +5,36 @@ import { TaskDom, TaskRemoval } from "./modules/task-handler.js";
 import { CategoryDom } from "./modules/category-handler.js";
 import { DataArr } from "./modules/storage-arrays.js";
 import { TaskEditor } from "./modules/task-editor.js";
+import { CategoryStorage, TaskStorage } from "./modules/local-storage.js";
 
 const DefaultLoad = (() => {
+    const setDefault = () => {
+        // If local storage not set up yet
+        if (!(CategoryStorage.getCategories() && TaskStorage.getTasks())) {
+            CategoryStorage.setCategories();
+            TaskStorage.setTasks();
+        }
+    };
+
+    const loadCategories = () => {
+        const allCategories = CategoryStorage.getCategories();
+        if (allCategories && allCategories.length > 1) {
+            for (let i = 1; i < allCategories.length; i++) {
+                CategoryDom.appendCategoryDiv(allCategories[i]);
+                DomElements.addExistingOptions(allCategories[i]);
+            };
+        };
+    };
+
     const addNewCategory = () => {
         const projectForm = document.querySelector("#projects-form");
         projectForm.addEventListener("submit", function(e) {
             e.preventDefault();
+            const newCategory = CategoryDom.getNewCategory();;
             if (DataArr.checkNewCategoryAdded(FormFields.getCategoryName())) {
                 FormFields.newCategoryHandler(); // append to array
-                CategoryDom.appendCategoryDiv(); // add dom element
-                DomElements.addOptionsToSelect("task-category"); // adds to new task form
-                DomElements.addOptionsToSelect("edit-task-category"); // adds to edit task form
+                CategoryDom.appendCategoryDiv(newCategory); // add dom element
+                DomElements.addNewOptionToSelect(newCategory); 
                 projectForm.reset();
                 DataArr.resetCategoryAdded();
             }
@@ -41,13 +60,15 @@ const DefaultLoad = (() => {
         SidebarHandler.setThisDivActive(defaultTab);
     };
 
-    return { addNewCategory, addNewTask, setDefaultActive };
+    return { setDefault, loadCategories, addNewCategory, addNewTask, setDefaultActive };
 })();
 
 const RenderPage = (() => {
     const datePicker = document.querySelector("#task-due-date");
     datePicker.min = new Date().toISOString().split("T")[0];
 
+    DefaultLoad.setDefault();
+    DefaultLoad.loadCategories();
     DefaultLoad.setDefaultActive();
 
     DomElements.expandCollapseTabs(".sidebar", ".expanded-sidebar");

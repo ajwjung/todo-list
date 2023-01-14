@@ -1,6 +1,7 @@
 import { DataArr } from "./storage-arrays.js";
 import { TaskExpansion, TaskRemoval } from "./task-handler.js";
 import { SidebarHandler } from "./sidebar-handler.js";
+import { TaskStorage } from "./local-storage.js";
 
 const TaskEditor = (() => {
     const displayContainer = document.querySelector(".display-container");
@@ -85,7 +86,7 @@ const TaskEditor = (() => {
         const taskToEdit = getCurrentTask();
         const taskCategory = taskToEdit.category;
         TaskRemoval.deleteObjectHandler(DataArr.getRelevantTasks(taskCategory), taskToEdit.description, taskCategory);
-        DataArr.pushEditedTask();
+        TaskStorage.pushTask("edit-task");
     };
 
     const prefillForm = () => {

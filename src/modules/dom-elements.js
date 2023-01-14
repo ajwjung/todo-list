@@ -1,14 +1,24 @@
 import { CategoryDom } from "./category-handler.js";
+import { CategoryStorage } from "./local-storage.js";
 import { NameHandler } from "./name-handler.js";
 
 // Handles creating dom elements
 const DomElements = (() => {
     const displayContainer = document.querySelector(".display-container");
 
-    const addOptionsToSelect = (selectId) => {
-        const categorySelect = document.getElementById(selectId);
-        const category = CategoryDom.getNewCategory();
-        categorySelect.add(new Option(NameHandler.makeNamePresentable(category), category))
+    const addExistingOptions = (categoryName) => {
+        const newTaskFormSelect = document.getElementById("task-category");
+        const editTaskFormSelect = document.getElementById("edit-task-category");
+        newTaskFormSelect.add(new Option(NameHandler.makeNamePresentable(categoryName), categoryName));
+        editTaskFormSelect.add(new Option(NameHandler.makeNamePresentable(categoryName), categoryName))
+    };
+
+    const addNewOptionToSelect = (categoryName) => {
+        const newTaskFormSelect = document.getElementById("task-category");
+        const editTaskFormSelect = document.getElementById("edit-task-category");
+        const category = CategoryDom.getNewCategory(categoryName);
+        newTaskFormSelect.add(new Option(NameHandler.makeNamePresentable(category), category));
+        editTaskFormSelect.add(new Option(NameHandler.makeNamePresentable(category), category))
     };
 
     const clearContents = () => {
@@ -80,8 +90,8 @@ const DomElements = (() => {
         });
     };
 
-    return { addOptionsToSelect, clearContents, createDiv,
-        createPara, createCategoryH1, appendH1, 
+    return { addExistingOptions, addNewOptionToSelect, clearContents, 
+        createDiv,createPara, createCategoryH1, appendH1, 
         createViewBtn, createEditBtn, createDeleteBtn, expandCollapseTabs }
 
 })();
