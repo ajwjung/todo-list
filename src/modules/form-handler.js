@@ -45,8 +45,13 @@ const FormFields = (() => {
         TaskStorage.pushTask("new task");
     };
 
+    const setMinDatePicker = (divName) => {
+        const datePicker = document.querySelector(divName);
+        datePicker.min = new Date().toISOString().split("T")[0];
+    };
+
     return { getCategoryName, newCategoryHandler, TodoTask,
-        getTaskObject, newTaskHandler };
+        getTaskObject, newTaskHandler, setMinDatePicker };
 })();
 
 export { FormFields };

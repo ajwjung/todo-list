@@ -77,8 +77,7 @@ const DefaultLoad = (() => {
 })();
 
 const RenderPage = (() => {
-    const datePicker = document.querySelector("#task-due-date");
-    datePicker.min = new Date().toISOString().split("T")[0];
+    FormFields.setMinDatePicker("#task-due-date");
 
     const defaultH1 = DomElements.createCategoryH1(SidebarHandler.getTabName());
     DomElements.appendH1(defaultH1);
