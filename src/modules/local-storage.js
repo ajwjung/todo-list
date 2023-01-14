@@ -40,7 +40,7 @@ const TaskStorage = (() => {
             task = FormFields.TodoTask("new task");
         } else if (taskStatus == "edit task") {
             task = FormFields.TodoTask("edit task");
-            DataArr.updateTaskVariable(task);
+            DataArr.setUpdatedTaskVariable(task);
         };
         
         allTasks[task.category].push(task);

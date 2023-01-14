@@ -28,7 +28,7 @@ const DataArr = (() => {
         return (TaskStorage.getTasks().hasOwnProperty(category));
     };
 
-    const updateTaskVariable = (newTask) => {
+    const setUpdatedTaskVariable = (newTask) => {
         updatedTask = newTask;
     };
 
@@ -41,7 +41,7 @@ const DataArr = (() => {
     }
 
     return { checkNewCategoryAdded, resetCategoryAdded, pushNewCategory,
-        checkTaskHasCategory, updateTaskVariable, 
+        checkTaskHasCategory, setUpdatedTaskVariable, 
         getUpdatedTask, getRelevantTasks };
 })();
 

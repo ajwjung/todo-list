@@ -36,7 +36,7 @@ const TaskEditor = (() => {
         displayContainer.addEventListener("click", function(e) {
             if (e.target.classList.contains("edit-details")) {
                 openPopup();
-                updateTaskVariable(e);
+                setCurrentTaskVar(e);
                 setCurrentDiv(e);
                 prefillForm();
                 resetStatus();
@@ -65,7 +65,7 @@ const TaskEditor = (() => {
         popupBackdrop.classList.add("hidden");
     };
     
-    const updateTaskVariable = (e) => {
+    const setCurrentTaskVar = (e) => {
         const taskDescription = TaskExpansion.getDivDescription(e.target.parentNode);
         const categoryName = SidebarHandler.getTabName();
 
@@ -108,7 +108,7 @@ const TaskEditor = (() => {
     }
 
     const updateCard = () => {
-        const editTask = getCurrentTask();
+        const editTask = DataArr.getUpdatedTask();
         const divToUpdate = getCurrentDiv();
         
         // update task card if still in same category
