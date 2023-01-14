@@ -36,12 +36,6 @@ const DataArr = (() => {
         return updatedTask;
     };
 
-    // const updateArrWithoutTask = (category, arr) => {
-    //     const allTasks = TaskStorage.getTasks();
-    //     allTasks[category] = arr;
-    //     localStorage.setItem("allTasks", JSON.stringify(allTasks));
-    // };
-
     const getRelevantTasks = (category) => {
         return TaskStorage.getTasks()[category];
     }

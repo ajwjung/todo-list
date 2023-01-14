@@ -49,7 +49,7 @@ const TaskEditor = (() => {
 
         editTaskForm.addEventListener("submit", function(e) {
             e.preventDefault();
-            editTaskObject(e);
+            editTaskObject(); 
             editTaskForm.reset();
             closePopup();
             updateCard();
@@ -86,7 +86,7 @@ const TaskEditor = (() => {
         const taskToEdit = getCurrentTask();
         const taskCategory = taskToEdit.category;
         TaskRemoval.deleteObjectHandler(DataArr.getRelevantTasks(taskCategory), taskToEdit.description, taskCategory);
-        TaskStorage.pushTask("edit-task");
+        TaskStorage.pushTask("edit task");
     };
 
     const prefillForm = () => {
