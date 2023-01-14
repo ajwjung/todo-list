@@ -106,17 +106,17 @@ const TaskEditor = (() => {
     }
 
     const updateCard = () => {
-        const editedTask = DataArr.getUpdatedTask();
+        const editTask = getCurrentTask();
         const divToUpdate = getCurrentDiv();
         
         // update task card if still in same category
-        if (editedTask.category == SidebarHandler.getTabName()) {
-            divToUpdate.querySelector(".title").textContent = editedTask.title;
-            divToUpdate.querySelector(".description").textContent = editedTask.description;
-            divToUpdate.querySelector(".task-date").textContent = editedTask.dueDate;
+        if (editTask.category == SidebarHandler.getTabName()) {
+            divToUpdate.querySelector(".title").textContent = editTask.title;
+            divToUpdate.querySelector(".description").textContent = editTask.description;
+            divToUpdate.querySelector(".task-date").textContent = editTask.dueDate;
             const priorityClasses = divToUpdate.querySelector(".priority-indicator").classList;
             priorityClasses.remove("low", "medium", "high");
-            priorityClasses.add(editedTask.priority);
+            priorityClasses.add(editTask.priority);
         } else {
             // remove from display if different category
             TaskRemoval.deleteTaskCard(divToUpdate.parentNode, divToUpdate);
