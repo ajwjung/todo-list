@@ -215,19 +215,16 @@ main {
 }
 
 .low {
-    /* background: var(--ivory); */
     background: url("../../src/imgs/numeric-1-circle.svg");
     filter: invert(62%) sepia(32%) saturate(791%) hue-rotate(325deg) brightness(96%) contrast(86%);
 }
 
 .medium {
-    /* background: var(--pink3); */
     background: url("../../src/imgs/numeric-2-circle.svg");
     filter: invert(30%) sepia(40%) saturate(3032%) hue-rotate(327deg) brightness(81%) contrast(79%);
 }
 
 .high {
-    /* background: var(--purple1); */
     background: url("../../src/imgs/numeric-3-circle.svg");
     filter: invert(6%) sepia(95%) saturate(4439%) hue-rotate(339deg) brightness(107%) contrast(106%);
 }

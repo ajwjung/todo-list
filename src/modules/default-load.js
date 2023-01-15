@@ -19,7 +19,7 @@ const DefaultLoad = (() => {
             setDefaultActive();
         };
     };
-
+    
     const loadSavedCategories = () => {
         const allCategories = CategoryStorage.getCategories();
         if (allCategories && allCategories.length > 1) {
@@ -27,11 +27,14 @@ const DefaultLoad = (() => {
                 CategoryDom.appendCategoryDiv(allCategories[i]);
                 DomElements.addExistingOptions(allCategories[i]);
             };
-            DomElements.clearContents();
-            const defaultH1 = DomElements.createCategoryH1(SidebarHandler.getTabName());
-            DomElements.appendH1(defaultH1);
             setOtherActive();
+        } else if (allCategories.length == 1) {
+            setDefaultActive();
         };
+
+        DomElements.clearContents();
+        const h1 = DomElements.createCategoryH1(SidebarHandler.getTabName());
+        DomElements.appendH1(h1);
     };
 
     const loadSavedTasks = () => {
@@ -62,9 +65,7 @@ const DefaultLoad = (() => {
             // if task category matches current tab, append
             if (newTask.category == currentTab) {
                 TaskDom.appendTaskDiv(newTask);
-            };
-            
-            if (currentTab == "default") {
+            } else if (currentTab == "default") {
                 TaskDom.appendTaskDiv(newTask);
             };
             taskForm.reset();
