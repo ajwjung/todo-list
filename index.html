@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.css">
+    <script type="module" src="../src/index.js" defer></script>
+    <title>Todo List</title>
+</head>
+<body>
+    <div id="content">
+        <aside>
+            <div class="sidebar-container">
+                <div class="sidebar">
+                    <p>Categories</p>
+                    <img src="../src/imgs/chevron-down.svg" class="dropdown-arrow">
+                </div>
+                <div class="expanded-sidebar hidden">
+                    <div class="category" id="default">Default</div>
+                    <div id="new-project">
+                        <form id="projects-form">
+                            <input type="text" id="category-name" name="categoryName" pattern="[A-Za-z\s]+" title="Only Alphabets and whitespaces are accepted." maxlength="20" placeholder="New category" required>
+                            <button type="submit" id="add-new-category">+</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="new-task-container">
+                <div id="add-new-task">+ ADD NEW TASK</div>
+                
+                <div class="task-form-container hidden">
+                    <form id="task-form">
+                        <div class="form-field" id="title">
+                            <label for="task-title">Task Name</label>
+                            <input type="text" id="task-title" name="taskTitle" pattern="[A-Za-z\s]+" title="Only Alphabets and whitespaces are accepted." maxlength="30" placeholder="Pay bills" required>
+                        </div>
+                        <div class="form-field" id="description">
+                            <label for="task-description">Description</label>
+                            <input type="text" id="task-description" name="taskDescription" maxlength="100" placeholder="Water and utility" required>
+                        </div>
+                        <div class="form-field" id="notes">
+                            <label for="task-notes">Notes</label>
+                            <textarea id="task-notes" name="taskNotes" placeholder="Collect payment from roommates"></textarea>
+                        </div>
+                        <div class="form-field" id="task-due">
+                            <label for="task-due-date">Due Date</label>
+                            <input type="date" id="task-due-date" name="taskDueDate" required>
+                        </div>
+                        <div class="form-field" id="priority">
+                            <label for="priority-level">Priority</label>
+                            <select id="priority-level" name="taskPriority" required>
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+                        <div class="form-field" id="category">
+                            <label for="task-category">Category</label>
+                            <select id="task-category" name="taskCategory" required>
+                                <option value="default">Default</option>
+                            </select>
+                        </div>
+                        <div class="form-field" id="task-btn">
+                            <button type="submit" id="add-task-btn" name="addTaskBtn">Add</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </aside>
+
+        <main>
+            <div class="display-container"></div>
+            <div class="backdrop hidden">
+                <div class="edit-task-container">
+                    <div class="edit-form-heading">
+                        <p>Edit Task</p>
+                        <button class="filter-purple" id="close-popup"></button>
+                    </div>
+                    <div class="edit-form-container">
+                        <form id="edit-task-form">
+                            <div class="edit-form-field" id="edit-title">
+                                <label for="edit-task-title">Task Name</label>
+                                <input type="text" id="edit-task-title" name="editTaskTitle" pattern="[A-Za-z\s]+" title="Only Alphabets and whitespaces are accepted." maxlength="30" required>
+                            </div>
+                            <div class="edit-form-field" id="edit-description">
+                                <label for="edit-task-description">Description</label>
+                                <input type="text" id="edit-task-description" name="editTaskDescription" maxlength="100" required>
+                            </div>
+                            <div class="edit-form-field" id="edit-notes">
+                                <label for="edit-task-notes">Notes</label>
+                                <textarea id="edit-task-notes" name="editTaskNotes"></textarea>
+                            </div>
+                            <div class="edit-form-field" id="edit-task-due">
+                                <label for="edit-task-due-date">Due Date</label>
+                                <input type="date" id="edit-task-due-date" name="editTaskDueDate" required>
+                            </div>
+                            <div class="edit-form-field" id="edit-priority">
+                                <label for="edit-priority-level">Priority</label>
+                                <select id="edit-priority-level" name="editTaskPriority" required>
+                                    <option value="low">Low</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="high">High</option>
+                                </select>
+                            </div>
+                            <div class="edit-form-field" id="edit-category">
+                                <label for="edit-task-category">Category</label>
+                                <select id="edit-task-category" name="editTaskCategory" required>
+                                    <option value="default">Default</option>
+                                </select>
+                            </div>
+                            <div class="edit-form-field" id="save-changes-btn">
+                                <button type="submit" id="save-changes-btn" name="saveChangesBtn">Save Changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
