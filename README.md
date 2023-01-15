@@ -1,6 +1,6 @@
 # Todo List
 
-* Live Demo
+* [Live Demo](https://ajwjung.github.io/todo-list/)
 
 ## Objective
 
