@@ -215,17 +215,17 @@ main {
 }
 
 .low {
-    background: url("../../src/imgs/numeric-1-circle.svg");
+    background: url("../imgs/numeric-1-circle.svg");
     filter: invert(62%) sepia(32%) saturate(791%) hue-rotate(325deg) brightness(96%) contrast(86%);
 }
 
 .medium {
-    background: url("../../src/imgs/numeric-2-circle.svg");
+    background: url("../imgs/numeric-2-circle.svg");
     filter: invert(30%) sepia(40%) saturate(3032%) hue-rotate(327deg) brightness(81%) contrast(79%);
 }
 
 .high {
-    background: url("../../src/imgs/numeric-3-circle.svg");
+    background: url("../imgs/numeric-3-circle.svg");
     filter: invert(6%) sepia(95%) saturate(4439%) hue-rotate(339deg) brightness(107%) contrast(106%);
 }
 
@@ -275,19 +275,19 @@ main {
 }
 
 .view-details {
-    background: url("../../src/imgs/chevron-down.svg");
+    background: url("../imgs/chevron-down.svg");
 }
 
 .hide-details {
-    background: url("../../src/imgs/chevron-up.svg");
+    background: url("../imgs/chevron-up.svg");
 }
 
 .edit-details {
-    background: url("../../src/imgs/pencil.svg");
+    background: url("../imgs/pencil.svg");
 }
 
 .delete-task {
-    background: url("../../src/imgs/trash-can-outline.svg");
+    background: url("../imgs/trash-can-outline.svg");
 }
 
 .filter-pink {
@@ -346,7 +346,7 @@ main {
 }
 
 #close-popup {
-    background: url("../../src/imgs/close.svg");
+    background: url("../imgs/close.svg");
     height: 25px;
     width: 25px;
     border: none;
