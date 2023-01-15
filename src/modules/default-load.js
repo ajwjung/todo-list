@@ -59,7 +59,12 @@ const DefaultLoad = (() => {
             FormFields.newTaskHandler(e);
             const currentTab = SidebarHandler.getTabName();
             const newTask = FormFields.getTaskObject("new task");
+            // if task category matches current tab, append
             if (newTask.category == currentTab) {
+                TaskDom.appendTaskDiv(newTask);
+            };
+            
+            if (currentTab == "default") {
                 TaskDom.appendTaskDiv(newTask);
             };
             taskForm.reset();

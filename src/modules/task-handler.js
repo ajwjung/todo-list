@@ -3,7 +3,7 @@ import { DataArr } from "./storage-arrays.js";
 import { NameHandler } from "./name-handler.js";
 import { SidebarHandler } from "./sidebar-handler.js";
 import { TaskEditor } from "./task-editor.js";
-import { TaskStorage } from "./local-storage.js";
+import { CategoryStorage, TaskStorage } from "./local-storage.js";
 
 const TaskDom = (() => {
     const createOverviewDiv = (taskObj) => {
@@ -69,10 +69,22 @@ const TaskDom = (() => {
 
     const createAllTaskDivs = () => {
         const currentTab = SidebarHandler.getTabName();
-        const currentCategoryTasks = DataArr.getRelevantTasks(currentTab);
-        currentCategoryTasks.forEach(task => {
-            appendTaskDiv(task);
-        });
+        const allCategories = CategoryStorage.getCategories();
+        const allTasks = TaskStorage.getTasks();
+        // show all tasks if tab is "default"
+        if (currentTab == "default") {
+            for (let i = 0; i < allCategories.length; i++) {
+                allTasks[allCategories[i]].forEach(task => {
+                    appendTaskDiv(task);
+                });
+            }
+            // otherwise, only show relevant tasks only
+        } else { 
+            const currentCategoryTasks = DataArr.getRelevantTasks(currentTab);
+            currentCategoryTasks.forEach(task => {
+                appendTaskDiv(task);
+            });
+        }
     };
 
     return { createTaskDetails, toggleViewDetails, appendTaskDiv, createAllTaskDivs }
